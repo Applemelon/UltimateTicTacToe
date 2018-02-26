@@ -5,8 +5,8 @@
  */
 package UTTT.gui.model;
 
+import UTTT.bll.bllManager;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -25,6 +25,7 @@ public class MacroboardPopulator {
     private final static Double MACRO_GAP = 10.0;
     private final static Double MICRO_GAP = 2.0;
     private final static Color BACKGROUND = Color.gray(0.1);
+    private int test = 0;
 
     
 
@@ -32,6 +33,8 @@ public class MacroboardPopulator {
         makeMicroGrids();
         
         setMircoGridsinMacroGrid(MacroGridPane);
+        
+        
         
         MacroGridPane.setVgap(MACRO_GAP);
         MacroGridPane.setHgap(MACRO_GAP);
@@ -50,7 +53,7 @@ public class MacroboardPopulator {
                 microGrids[x][y].setHgap(MICRO_GAP);
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        microGrids[x][y].add(getButton(i, j), i, j);
+                        microGrids[x][y].add(getButton(i, j, x, y), i, j);
 
                     }
                 }
@@ -65,10 +68,10 @@ public class MacroboardPopulator {
      *
      * @return button
      */
-    private Button getButton(int x, int y) {
+    private Button getButton(int xMicro, int yMicro, int xMakro, int yMakro) {
         Button button = new Button();
-        setButtonAction(button, x, y);
-        button.setText("Test");
+        setButtonAction(button, xMicro, yMicro, xMakro, yMakro);
+        button.setText("empty");
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
         return button;
@@ -80,9 +83,16 @@ public class MacroboardPopulator {
      * @param i
      * @param j 
      */
-    private void setButtonAction(Button button, int x, int y) {
+    private void setButtonAction(Button button, int xMicro, int yMicro, int xMakro, int yMakro) {
         button.setOnAction((ActionEvent event) -> {
-            System.out.println("x" + (x + 1) + " y" + (y + 1));
+            int Xposition = xMakro*3 + xMicro;
+            int Yposition = yMakro*3 + yMicro;
+            
+            bllManager.tryMove(Xposition, Yposition);
+            
+            
+            
+            
         });
     }
 

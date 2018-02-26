@@ -10,9 +10,9 @@ import UTTT.bll.move.IMove;
 
 /**
  *
- * @author alexl
+ * @author axl
  */
-public class Bot implements IBot {
+public class OurAmazingAIBot implements IBot {
 
     @Override
     public IMove doMove(IGameState state) {
