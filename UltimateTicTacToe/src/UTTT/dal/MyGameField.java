@@ -6,8 +6,13 @@
 package UTTT.dal;
 
 import UTTT.bll.field.IField;
+import static UTTT.bll.field.IField.EMPTY_FIELD;
 import UTTT.bll.move.IMove;
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.StringPropertyBase;
+import javafx.beans.property.adapter.JavaBeanStringProperty;
 
 /**
  *
@@ -15,9 +20,26 @@ import java.util.List;
  */
 public class MyGameField implements IField{
 
+    private StringProperty[][] board;
+
+    public MyGameField() {
+        board = new StringProperty[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = new SimpleStringProperty(EMPTY_FIELD);
+            }
+        }
+    }
+    
+    
+
     @Override
     public void clearBoard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j].set(EMPTY_FIELD);
+            }
+        }
     }
 
     @Override
@@ -47,7 +69,13 @@ public class MyGameField implements IField{
 
     @Override
     public String[][] getBoard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[][] stringBoard = new String[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                stringBoard[i][j] = board[i][j].get();
+            }
+        }
+        return stringBoard;
     }
 
     @Override
@@ -57,7 +85,11 @@ public class MyGameField implements IField{
 
     @Override
     public void setBoard(String[][] board) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                this.board[i][j].set(board[i][j]);
+            }
+        }
     }
 
     @Override
@@ -65,4 +97,8 @@ public class MyGameField implements IField{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    public StringProperty[][] getPropertyBoard(){
+        return board;
+    }
 }

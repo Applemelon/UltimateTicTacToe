@@ -77,7 +77,7 @@ public class MacroboardPopulator {
         
         setButtonAction(button, Xposition, Yposition);
         
-        //button.textProperty().bind(bll.getValueProperty(Xposition, Yposition));
+        button.textProperty().bind(bll.getValue(Xposition, Yposition));
         
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
