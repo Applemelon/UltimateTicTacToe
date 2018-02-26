@@ -23,7 +23,7 @@ public class UTTTMain extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/teacherclient/gui/view/LoginWindow.fxml"));
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/MainView.fxml"));
         Parent root = fxLoader.load();
         scene = new Scene(root);
         stage.setScene(scene);
