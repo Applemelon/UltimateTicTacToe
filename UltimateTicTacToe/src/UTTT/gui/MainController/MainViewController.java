@@ -28,7 +28,7 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MacroboardPopulator macroPop = new MacroboardPopulator(MacroGridPane, Color.DARKBLUE, Color.RED);
+        MacroboardPopulator macroPop = new MacroboardPopulator(MacroGridPane);
     }    
     
 }

@@ -22,18 +22,18 @@ public class MacroboardPopulator {
     private GridPane[][] microGrids = new GridPane[3][3];
     private final static Double MACRO_GAP = 10.0;
     private final static Double MICRO_GAP = 2.0;
-    private Color buttonColor;
+    private final static Color BACKGROUND = Color.gray(0.1);
+
     
 
-    public MacroboardPopulator(GridPane MacroGridPane, Color BackGroundColor, Color buttonColor) {
-        this.buttonColor  = buttonColor;
+    public MacroboardPopulator(GridPane MacroGridPane) {
         makeMicroGrids();
         
         setMircoGridsinMacroGrid(MacroGridPane);
         
         MacroGridPane.setVgap(MACRO_GAP);
         MacroGridPane.setHgap(MACRO_GAP);
-        MacroGridPane.setBackground(new Background(new BackgroundFill(BackGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        MacroGridPane.setBackground(new Background(new BackgroundFill(BACKGROUND, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     /**
@@ -67,7 +67,7 @@ public class MacroboardPopulator {
         Button button = new Button();
         button.setText("Test");
         button.setPrefSize(10000, 10000);
-        button.setBackground(new Background(new BackgroundFill(buttonColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
         return button;
     }
 
