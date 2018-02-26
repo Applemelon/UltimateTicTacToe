@@ -26,15 +26,16 @@ public class MacroboardPopulator {
     private final static Double MICRO_GAP = 2.0;
     private final static Color BACKGROUND = Color.gray(0.1);
     private int test = 0;
+    private bllManager bll;
 
     
 
     public MacroboardPopulator(GridPane MacroGridPane) {
+        bll = new bllManager();
+        
         makeMicroGrids();
         
         setMircoGridsinMacroGrid(MacroGridPane);
-        
-        
         
         MacroGridPane.setVgap(MACRO_GAP);
         MacroGridPane.setHgap(MACRO_GAP);
@@ -69,9 +70,15 @@ public class MacroboardPopulator {
      * @return button
      */
     private Button getButton(int xMicro, int yMicro, int xMakro, int yMakro) {
+        int Xposition = xMakro*3 + xMicro;
+        int Yposition = yMakro*3 + yMicro;
+        
         Button button = new Button();
-        setButtonAction(button, xMicro, yMicro, xMakro, yMakro);
-        button.setText("empty");
+        
+        setButtonAction(button, Xposition, Yposition);
+        
+        button.textProperty().bind(bll.getValueProperty(Xposition, Yposition));
+        
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
         return button;
@@ -80,19 +87,12 @@ public class MacroboardPopulator {
     /**
      * Sets what each button should do on a press.
      * @param button
-     * @param i
-     * @param j 
+     * @param the x position a value from 0 to 8
+     * @param the y position a value from 0 to 8
      */
-    private void setButtonAction(Button button, int xMicro, int yMicro, int xMakro, int yMakro) {
+    private void setButtonAction(Button button, int Xposition, int Yposition) {
         button.setOnAction((ActionEvent event) -> {
-            int Xposition = xMakro*3 + xMicro;
-            int Yposition = yMakro*3 + yMicro;
-            
-            bllManager.tryMove(Xposition, Yposition);
-            
-            
-            
-            
+            bll.tryMove(Xposition, Yposition);
         });
     }
 

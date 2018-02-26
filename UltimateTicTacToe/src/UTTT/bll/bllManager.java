@@ -5,13 +5,20 @@
  */
 package UTTT.bll;
 
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author janvanzetten
  */
 public class bllManager {
+    
 
-    public static void tryMove(int Xposition, int Yposition) {
+    public void tryMove(int Xposition, int Yposition) {
+        
+    }
+    
+    public StringProperty getValueProperty(int x, int y){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
