@@ -5,6 +5,8 @@
  */
 package UTTT.gui.model;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -48,7 +50,7 @@ public class MacroboardPopulator {
                 microGrids[x][y].setHgap(MICRO_GAP);
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        microGrids[x][y].add(getButton(), i, j);
+                        microGrids[x][y].add(getButton(i, j), i, j);
 
                     }
                 }
@@ -63,12 +65,27 @@ public class MacroboardPopulator {
      *
      * @return button
      */
-    private Button getButton() {
+    private Button getButton(int x, int y) {
         Button button = new Button();
+        setButtonAction(button, x, y);
         button.setText("Test");
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
         return button;
+    }
+    
+    /**
+     * Sets what each button should do on a press.
+     * @param button
+     * @param i
+     * @param j 
+     */
+    private void setButtonAction(Button button, int x, int y) {
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                System.out.println("x" + (x + 1) + " y" + (y + 1));
+            }
+        });
     }
 
     /**
