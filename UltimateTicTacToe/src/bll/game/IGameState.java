@@ -1,6 +1,6 @@
-package game;
+package bll.game;
 
-import field.IField;
+import bll.field.IField;
 
 /**
  *
