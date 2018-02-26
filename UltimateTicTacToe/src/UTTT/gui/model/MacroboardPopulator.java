@@ -26,6 +26,8 @@ public class MacroboardPopulator {
     private final static Double MICRO_GAP = 2.0;
     private Color buttonColor;
     
+    private int currentTurn = 0;
+    
 
     public MacroboardPopulator(GridPane MacroGridPane, Color BackGroundColor, Color buttonColor) {
         this.buttonColor  = buttonColor;
@@ -83,7 +85,16 @@ public class MacroboardPopulator {
     private void setButtonAction(Button button, int x, int y) {
         button.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                System.out.println("x" + (x + 1) + " y" + (y + 1));
+                if (currentTurn == 0) {
+                    button.setText("X");
+                    button.setStyle("-fx-Background-Color: #FF1F00");
+                    currentTurn = 1;
+                }
+                else {
+                    button.setText("O");
+                    button.setStyle("-fx-Background-Color: #36FF00");
+                    currentTurn = 0;
+                }
             }
         });
     }
