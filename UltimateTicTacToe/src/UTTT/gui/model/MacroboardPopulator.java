@@ -5,6 +5,8 @@
  */
 package UTTT.gui.model;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -65,6 +67,11 @@ public class MacroboardPopulator {
      */
     private Button getButton(int i, int j) {
         Button button = new Button();
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                System.out.println("x" + (i + 1) + " y" + (j + 1));
+            }
+        });
         button.setText("Test");
         button.setPrefSize(10000, 10000);
         button.setBackground(new Background(new BackgroundFill(buttonColor, CornerRadii.EMPTY, Insets.EMPTY)));
