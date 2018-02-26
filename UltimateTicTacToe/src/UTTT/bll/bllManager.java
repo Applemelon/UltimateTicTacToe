@@ -5,6 +5,8 @@
  */
 package UTTT.bll;
 
+import UTTT.bll.move.IMove;
+import UTTT.bll.move.Move;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -13,13 +15,20 @@ import javafx.beans.property.StringProperty;
  */
 public class bllManager {
     
+    
+    
 
     public void tryMove(int Xposition, int Yposition) {
+        IMove move = new Move(Xposition, Yposition);
         
+        //TODO send to game manager validate move and make move
     }
     
     public StringProperty getValueProperty(int x, int y){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        //TODO add listener on board text on the given koordinats
+        return null;
     }
     
 }
