@@ -7,11 +7,15 @@ package UTTT.bll.game;
 
 import UTTT.bll.field.IField;
 
+import UTTT.dal.DALManager;
+
 /**
  *
  * @author alexl
  */
 public class GameState implements IGameState{
+    
+    
 
     @Override
     public IField getField() {
