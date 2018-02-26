@@ -81,8 +81,8 @@ public class MacroboardPopulator {
      * @param j 
      */
     private void setButtonAction(Button button, int x, int y) {
-        button.setOnAction(new javafx.event.EventHandler<javafx.event.ActionEvent>() {
-            public void handle(javafx.event.ActionEvent event) {
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
                 System.out.println("x" + (x + 1) + " y" + (y + 1));
             }
         });
