@@ -15,31 +15,31 @@ import UTTT.dal.DALManager;
  */
 public class GameState implements IGameState{
     
-    
+    private DALManager dMan;
 
     @Override
     public IField getField() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dMan.getField();
     }
 
     @Override
     public int getMoveNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dMan.getMoveNumber();
     }
 
     @Override
     public void setMoveNumber(int moveNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dMan.setMoveNumber(moveNumber);
     }
 
     @Override
     public int getRoundNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dMan.getRoundNumber();
     }
 
     @Override
     public void setRoundNumber(int roundNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dMan.setRoundNumber(roundNumber);
     }
     
 }

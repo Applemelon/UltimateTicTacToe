@@ -45,7 +45,7 @@ public class MacroboardPopulator {
                 microGrids[x][y].setHgap(MICRO_GAP);
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        microGrids[x][y].add(getButton(), i, j);
+                        microGrids[x][y].add(getButton(i, j), i, j);
 
                     }
                 }
@@ -60,7 +60,7 @@ public class MacroboardPopulator {
      *
      * @return button
      */
-    private Button getButton() {
+    private Button getButton(int i, int j) {
         Button button = new Button();
         button.setText("Test");
         button.setPrefSize(10000, 10000);
