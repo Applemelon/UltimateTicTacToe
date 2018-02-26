@@ -65,17 +65,27 @@ public class MacroboardPopulator {
      *
      * @return button
      */
-    private Button getButton(int i, int j) {
+    private Button getButton(int x, int y) {
         Button button = new Button();
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                System.out.println("x" + (i + 1) + " y" + (j + 1));
-            }
-        });
+        setButtonAction(button, x, y);
         button.setText("Test");
         button.setPrefSize(10000, 10000);
         button.setBackground(new Background(new BackgroundFill(buttonColor, CornerRadii.EMPTY, Insets.EMPTY)));
         return button;
+    }
+    
+    /**
+     * Sets what each button should do on a press.
+     * @param button
+     * @param i
+     * @param j 
+     */
+    private void setButtonAction(Button button, int x, int y) {
+        button.setOnAction(new javafx.event.EventHandler<javafx.event.ActionEvent>() {
+            public void handle(javafx.event.ActionEvent event) {
+                System.out.println("x" + (x + 1) + " y" + (y + 1));
+            }
+        });
     }
 
     /**
