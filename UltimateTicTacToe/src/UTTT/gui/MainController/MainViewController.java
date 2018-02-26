@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -27,7 +28,7 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MacroboardPopulator macroPop = new MacroboardPopulator(MacroGridPane);
+        MacroboardPopulator macroPop = new MacroboardPopulator(MacroGridPane, Color.DARKBLUE, Color.RED);
     }    
     
 }
