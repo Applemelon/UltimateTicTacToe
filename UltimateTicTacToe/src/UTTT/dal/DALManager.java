@@ -9,6 +9,6 @@ package UTTT.dal;
  *
  * @author janvanzetten
  */
-public class dalManager {
+public class DALManager {
     
 }
