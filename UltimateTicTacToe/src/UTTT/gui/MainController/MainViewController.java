@@ -5,9 +5,12 @@
  */
 package UTTT.gui.MainController;
 
+import UTTT.gui.model.MacroboardPopulator;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -16,12 +19,15 @@ import javafx.fxml.Initializable;
  */
 public class MainViewController implements Initializable {
 
+    @FXML
+    private GridPane MacroGridPane;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        MacroboardPopulator macroPop = new MacroboardPopulator(MacroGridPane);
     }    
     
 }
