@@ -10,15 +10,22 @@ package UTTT.bll.move;
  * @author alexl
  */
 public class Move implements IMove {
+    int x;
+    int y;
+
+    public Move(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
     
     @Override
     public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return x;
     }
 
     @Override
     public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return y;
     }
     
 }
