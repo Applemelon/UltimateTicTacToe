@@ -29,6 +29,12 @@ public class MyGameField implements IField{
                 board[i][j] = new SimpleStringProperty(EMPTY_FIELD);
             }
         }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                macroBoard[i][j] = AVAILABLE_FIELD;
+            }
+        }
+        
     }
     
 
