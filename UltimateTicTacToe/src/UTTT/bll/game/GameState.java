@@ -16,10 +16,15 @@ import UTTT.dal.DALManager;
 public class GameState implements IGameState{
     
     private DALManager dMan;
+    private IField field;
+
+    public GameState(IField field) {
+        this.field = field;
+    }
 
     @Override
     public IField getField() {
-        return dMan.getField();
+        return field;
     }
 
     @Override
