@@ -17,11 +17,6 @@ import UTTT.dal.MyGameField;
  */
 public class GameManager {
 
-    private boolean microBoardWon(IMove move) {
-        //return false;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * Three different game modes.
      */
@@ -159,30 +154,28 @@ public class GameManager {
         IField myfield = currentState.getField();
         String[][] macroBoard = myfield.getMacroboard();
 
-        if (microBoardWon(move)){
+        if (microBoardWon(move)) {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
-                    if(!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))){
+                    if (!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))) {
                         macroBoard[i][j] = "-1"; //means avalible field
                     }
                 }
             }
-        }
-        else{
+        } else {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
-                    if(!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))){
-                        if(i == move.getX()/3 && j == move.getY()/3){
+                    if (!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))) {
+                        if (i == move.getX() / 3 && j == move.getY() / 3) {
                             macroBoard[i][j] = "-1"; //means avalible field
-                        }
-                        else{
+                        } else {
                             macroBoard[i][j] = "."; //means empty field
                         }
                     }
                 }
             }
         }
-        
+
         myfield.setMacroboard(macroBoard);
     }
 
@@ -195,6 +188,16 @@ public class GameManager {
     private boolean checkIfOccupied(int x, int y) {
         IField myField = currentState.getField();
         return myField.getPlayerId(x, y).equals(PLAYER0 + "") || myField.getPlayerId(x, y).equals(PLAYER1 + "");
+    }
+
+    /**
+     * Check if the microboard in wich the move is played has been won
+     * @param move
+     * @return true if the microboard has been won
+     */
+    private boolean microBoardWon(IMove move) {
+        //return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
