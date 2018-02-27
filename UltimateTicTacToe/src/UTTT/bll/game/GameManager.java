@@ -196,12 +196,15 @@ public class GameManager {
      * @return true if the microboard has been won
      */
     private boolean microBoardWon(IMove move) {
-        //return false;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[][] normalBoard = new String[3][3];
+        
+        //TODO get normalboard from move and 9x9 board
+        
+        return !checkIfNormalboardIsWon(normalBoard).equals(".");
     }
     
     /**
-     * check if a normal 3 by 3 board is won
+     * Check if a normal 3 by 3 board is won
      * @param normalBoard a 3 by 3 two dimensional array
      * @return the winner if there is any else returns "."
      */
