@@ -18,8 +18,8 @@ import UTTT.dal.MyGameField;
 public class GameManager {
 
     private boolean microBoardWon(IMove move) {
-        return false;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
