@@ -199,5 +199,16 @@ public class GameManager {
         //return false;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    /**
+     * check if a normal 3 by 3 board is won
+     * @param normalBoard a 3 by 3 two dimensional array
+     * @return the winner if there is any else returns "."
+     */
+    private String checkIfNormalboardIsWon(String[][] normalBoard){
+        
+        
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }
