@@ -157,7 +157,7 @@ public class GameManager {
         //TODO update macroBoard based on move
         myfield.setMacroboard(macroBoard);
 
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("'UpdateMacroboard' Not supported yet.");
     }
 
     /**
