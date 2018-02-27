@@ -17,6 +17,11 @@ import UTTT.dal.MyGameField;
  */
 public class GameManager {
 
+    private boolean microBoardWon(IMove move) {
+        return false;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Three different game modes.
      */
@@ -154,10 +159,31 @@ public class GameManager {
         IField myfield = currentState.getField();
         String[][] macroBoard = myfield.getMacroboard();
 
-        //TODO update macroBoard based on move
+        if (microBoardWon(move)){
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if(!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))){
+                        macroBoard[i][j] = "-1"; //means avalible field
+                    }
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if(!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))){
+                        if(i == move.getX()/3 && j == move.getY()/3){
+                            macroBoard[i][j] = "-1"; //means avalible field
+                        }
+                        else{
+                            macroBoard[i][j] = "."; //means empty field
+                        }
+                    }
+                }
+            }
+        }
+        
         myfield.setMacroboard(macroBoard);
-
-        throw new UnsupportedOperationException("'UpdateMacroboard' Not supported yet.");
     }
 
     /**
