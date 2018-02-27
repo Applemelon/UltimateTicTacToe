@@ -1,7 +1,9 @@
 package UTTT.bll.game;
 
 import UTTT.bll.bot.IBot;
+import UTTT.bll.field.IField;
 import UTTT.bll.move.IMove;
+import UTTT.dal.MyGameField;
 
 /**
  * This is a proposed GameManager for Ultimate Tic-Tac-Toe,
@@ -79,6 +81,7 @@ public class GameManager {
         //Verify the new move
         if(!VerifyMoveLegality(move)) 
         { 
+            System.out.println("The move cannot be made!");
             return false; 
         }
         
@@ -132,8 +135,11 @@ public class GameManager {
     
     private void UpdateBoard(IMove move)
     {
-       //TODO: Update the board to the new state 
-        throw new UnsupportedOperationException("Not supported yet."); 
+       IField myfield = currentState.getField();
+       String[][] board = myfield.getBoard();
+       board[move.getX()][move.getY()] = currentPlayer + "";
+       
+       myfield.setBoard(board);
     }
     
     private void UpdateMacroboard(IMove move)
@@ -141,4 +147,14 @@ public class GameManager {
        //TODO: Update the macroboard to the new state 
        throw new UnsupportedOperationException("Not supported yet."); 
     }
+    
+    
+    
+//    private boolean checkGameOver(IMove move) {
+//        if (false){
+//            
+//            return false;
+//        }
+//        
+//    }
 }
