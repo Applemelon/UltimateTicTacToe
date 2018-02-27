@@ -11,8 +11,6 @@ import UTTT.bll.move.IMove;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.property.StringPropertyBase;
-import javafx.beans.property.adapter.JavaBeanStringProperty;
 
 /**
  *
@@ -31,7 +29,6 @@ public class MyGameField implements IField{
         }
     }
     
-    
 
     @Override
     public void clearBoard() {
@@ -49,17 +46,31 @@ public class MyGameField implements IField{
 
     @Override
     public String getPlayerId(int column, int row) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return board[column][row].get();
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (!board[i][j].get().equals(EMPTY_FIELD)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j].get().equals(EMPTY_FIELD)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
