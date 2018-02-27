@@ -1,6 +1,7 @@
 package UTTT.bll.game;
 
 import UTTT.bll.bot.IBot;
+import UTTT.bll.field.IField;
 import UTTT.bll.move.IMove;
 
 /**
@@ -26,6 +27,8 @@ public class GameManager {
     
     private final IGameState currentState;
     private int currentPlayer = 0; //player0 == 0 && player1 == 1
+    private final static int PLAYER0 = 0;
+    private final static int PLAYER1 = 1;
     private GameMode mode = GameMode.HumanVsHuman;
     private IBot bot = null;
     private IBot bot2 = null;
@@ -127,7 +130,12 @@ public class GameManager {
         //NOTE: should also check whether the move is placed on an occupied spot.
         System.out.println("Checking move validity against macroboard available field");
         System.out.println("Not currently checking move validity actual board");
-        return currentState.getField().isInActiveMicroboard(move.getX(), move.getY());
+        if(currentState.getField().isInActiveMicroboard(move.getX(), move.getY())){
+            if(!checkIfOccupied(move.getX(), move.getY()))
+                return true;
+        }
+        
+        return false;
     }
     
     private void UpdateBoard(IMove move)
@@ -141,4 +149,16 @@ public class GameManager {
        //TODO: Update the macroboard to the new state 
        throw new UnsupportedOperationException("Not supported yet."); 
     }
+    
+    /**
+     * cheks if the spot is occupied
+     * @param move
+     * @return true if occupied otherwise false
+     */
+     private boolean checkIfOccupied(int x, int y) {
+        IField myField = currentState.getField();
+        return myField.getPlayerId(x, y).equals(PLAYER0 + "") || myField.getPlayerId(x, y).equals(PLAYER1 + "");
+    }
+    
+    
 }
