@@ -11,8 +11,6 @@ import UTTT.bll.move.IMove;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.property.StringPropertyBase;
-import javafx.beans.property.adapter.JavaBeanStringProperty;
 
 /**
  *
@@ -21,16 +19,23 @@ import javafx.beans.property.adapter.JavaBeanStringProperty;
 public class MyGameField implements IField{
 
     private StringProperty[][] board;
+    private String[][] macroBoard;
 
     public MyGameField() {
         board = new StringProperty[9][9];
+        macroBoard = new String[3][3];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 board[i][j] = new SimpleStringProperty(EMPTY_FIELD);
             }
         }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                macroBoard[i][j] = AVAILABLE_FIELD;
+            }
+        }
+        
     }
-    
     
 
     @Override
@@ -49,22 +54,39 @@ public class MyGameField implements IField{
 
     @Override
     public String getPlayerId(int column, int row) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return board[column][row].get();
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (!board[i][j].get().equals(EMPTY_FIELD)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j].get().equals(EMPTY_FIELD)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public Boolean isInActiveMicroboard(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int macroX = x/3;
+        int macroY = y/3;
+        
+        return macroBoard[macroX][macroY].equals(AVAILABLE_FIELD);
     }
 
     @Override
@@ -80,7 +102,7 @@ public class MyGameField implements IField{
 
     @Override
     public String[][] getMacroboard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return macroBoard;
     }
 
     @Override
@@ -94,10 +116,14 @@ public class MyGameField implements IField{
 
     @Override
     public void setMacroboard(String[][] macroboard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.macroBoard = macroboard;
     }
     
     
+    /**
+     * get the board as a string property 2 dimensional array
+     * @return StringProperty[9][9]
+     */
     public StringProperty[][] getPropertyBoard(){
         return board;
     }

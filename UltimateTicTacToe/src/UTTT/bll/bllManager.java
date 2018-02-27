@@ -21,8 +21,8 @@ public class bllManager {
     MyGameField myfield;
 
     public bllManager() {
-        this.gameManager = new GameManager(new GameState());
         this.myfield = new MyGameField();
+        this.gameManager = new GameManager(new GameState(myfield));
     }
     
     

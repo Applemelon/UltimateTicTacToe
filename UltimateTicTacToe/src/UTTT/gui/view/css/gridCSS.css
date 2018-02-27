@@ -16,6 +16,7 @@ and open the template in the editor.
 }
 
 .button:pressed{
-    -fx-background-color: white;
+    -fx-background-color: lightgrey;
+    
 }
 
