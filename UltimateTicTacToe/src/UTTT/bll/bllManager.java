@@ -26,13 +26,23 @@ public class bllManager {
     }
     
     
-
+/**
+ * try to move
+ * @param Xposition
+ * @param Yposition 
+ */
     public void tryMove(int Xposition, int Yposition) {
         IMove move = new Move(Xposition, Yposition);
         
         gameManager.UpdateGame(move);
     }
     
+    /**
+     * get the value of the given koordinats
+     * @param x
+     * @param y
+     * @return Stringproperty with the value
+     */
     public StringProperty getValue(int x, int y){
         StringProperty[][] board = myfield.getPropertyBoard();
         

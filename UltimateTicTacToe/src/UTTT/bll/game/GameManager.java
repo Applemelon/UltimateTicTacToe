@@ -165,7 +165,7 @@ public class GameManager {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (!(macroBoard[i][j].equals(PLAYER0) || macroBoard[i][j].equals(PLAYER1))) {
-                        if (i == move.getX() / 3 && j == move.getY() / 3) {
+                        if (i == move.getX() % 3 && j == move.getY() % 3) {
                             macroBoard[i][j] = "-1"; //means avalible field
                         } else {
                             macroBoard[i][j] = "."; //means empty field
