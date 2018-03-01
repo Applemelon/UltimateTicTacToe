@@ -95,3 +95,4 @@ $RECYCLE.BIN/
 #encrption jar
 !/StudentClient/lib/*
 !/StudentClient/lib/*
+UltimateTicTacToe/nbproject/private/private.xml

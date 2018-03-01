@@ -127,7 +127,7 @@ public class GameManager {
     }
 
     private Boolean VerifyMoveLegality(IMove move) {
-        //Test if the move is legal   
+        //Test if the move is legal
         //NOTE: should also check whether the move is placed on an occupied spot.
         System.out.println("Checking move validity against macroboard available field");
         System.out.println("Not currently checking move validity actual board");
@@ -191,26 +191,84 @@ public class GameManager {
 
     /**
      * Check if the microboard in wich the move is played has been won
+     *
      * @param move
      * @return true if the microboard has been won
      */
     private boolean microBoardWon(IMove move) {
         String[][] normalBoard = new String[3][3];
-        
+
         //TODO get normalboard from move and 9x9 board
-        
+        int xMacro = move.getX() / 3;
+        int yMacro = move.getY() / 3;
+
+        String[][] nineBoard = currentState.getField().getBoard();
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                normalBoard[i][j] = nineBoard[xMacro * 3 + i][yMacro * 3 + j];
+            }
+        }
+
         return !checkIfNormalboardIsWon(normalBoard).equals(".");
     }
-    
+
     /**
      * Check if a normal 3 by 3 board is won
+     *
      * @param normalBoard a 3 by 3 two dimensional array
      * @return the winner if there is any else returns "."
      */
-    private String checkIfNormalboardIsWon(String[][] normalBoard){
-        
-        
-        throw new UnsupportedOperationException("Not supported yet.");
+    private String checkIfNormalboardIsWon(String[][] normalBoard) {
+        String[] line = new String[3];
+
+        //horisontal
+        for (int i = 0; i < 3; i++) {
+            System.arraycopy(normalBoard[i], 0, line, 0, 3);
+
+            if (line[0].equals(line[1]) && line[1].equals(line[2])) {
+                if (!(line[0].equals(".") || line[0].equals("-1"))) {
+                    return line[0];
+                }
+            }
+
+        }
+
+        //vertical
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                line[j] = normalBoard[j][i];
+            }
+
+            if (line[0].equals(line[1]) && line[1].equals(line[2])) {
+                if (!(line[0].equals(".") || line[0].equals("-1"))) {
+                    return line[0];
+                }
+            }
+
+        }
+
+        //diagnoal 1
+        for (int i = 0; i < 3; i++) {
+            line[i] = normalBoard[i][i];
+        }
+        if (line[0].equals(line[1]) && line[1].equals(line[2])) {
+            if (!(line[0].equals(".") || line[0].equals("-1"))) {
+                return line[0];
+            }
+        }
+        //diagnoal 2
+        for (int i = 0; i < 3; i++) {
+            line[i] = normalBoard[2 - i][2 - i];
+        }
+        if (line[0].equals(line[1]) && line[1].equals(line[2])) {
+            if (!(line[0].equals(".") || line[0].equals("-1"))) {
+                return line[0];
+            }
+        }
+
+        return ".";
+
     }
 
     public int getCurrentPlayer() {
