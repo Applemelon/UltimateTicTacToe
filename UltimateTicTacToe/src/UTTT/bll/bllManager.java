@@ -46,7 +46,10 @@ public class bllManager {
     public StringProperty getValue(int x, int y){
         StringProperty[][] board = myfield.getPropertyBoard();
         
-        return board[x][y];
+        StringProperty value = board[x][y];
+        
+
+        return value;
     }
     
 }

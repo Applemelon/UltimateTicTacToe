@@ -6,6 +6,9 @@
 package UTTT.gui.model;
 
 import UTTT.bll.bllManager;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -77,7 +80,17 @@ public class MacroboardPopulator {
         
         setButtonAction(button, Xposition, Yposition);
         
-        button.textProperty().bind(bll.getValue(Xposition, Yposition));
+        StringProperty value = bll.getValue(Xposition, Yposition);
+
+        value.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (newValue.equals("1")){
+                button.setText("X");
+            }
+            else if(newValue.equals("0")){
+                button.setText("O");
+            }
+        });
+        
         
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
