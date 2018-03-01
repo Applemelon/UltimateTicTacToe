@@ -309,4 +309,20 @@ public class GameManager
 
     }
 
+    /**
+     * Check if any players has won.
+     * @return boolean expressing rather or not it is game over.
+     */
+    public int isGameOver()
+    {
+        if (checkIfNormalboardIsWon(currentState.getField().getMacroboard()).equals(PLAYER0 + ""))
+        {
+            return PLAYER0;
+        }
+        else if (checkIfNormalboardIsWon(currentState.getField().getMacroboard()).equals(PLAYER1 + ""))
+        {
+            return PLAYER1;
+        }
+        return -1;
+    }
 }

@@ -20,14 +20,14 @@ import javafx.scene.layout.GridPane;
 public class MainViewController implements Initializable {
 
     @FXML
-    private GridPane MacroGridPane;
+    private GridPane macroGridPane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MacroboardPopulator macroPop = new MacroboardPopulator(MacroGridPane);
+        MacroboardPopulator macroPop = new MacroboardPopulator(macroGridPane);
     }    
     
 }

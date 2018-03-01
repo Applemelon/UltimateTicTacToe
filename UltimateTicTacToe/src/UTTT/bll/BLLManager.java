@@ -16,40 +16,51 @@ import javafx.beans.property.StringProperty;
  *
  * @author janvanzetten
  */
-public class bllManager {
+public class BLLManager
+{
     GameManager gameManager;
     MyGameField myfield;
 
-    public bllManager() {
+    public BLLManager()
+    {
         this.myfield = new MyGameField();
         this.gameManager = new GameManager(new GameState(myfield));
     }
-    
-    
-/**
- * try to move
- * @param Xposition
- * @param Yposition 
- */
-    public void tryMove(int Xposition, int Yposition) {
-        IMove move = new Move(Xposition, Yposition);
-        
+
+    /**
+     * try to move
+     * @param xPosition
+     * @param yPosition
+     */
+    public void tryMove(int xPosition, int yPosition)
+    {
+        IMove move = new Move(xPosition, yPosition);
+
         gameManager.UpdateGame(move);
     }
-    
+
     /**
-     * get the value of the given koordinats
+     * Check if any players has won.
+     * @return boolean expressing rather or not it is game over.
+     */
+    public int isGameOver()
+    {
+        return gameManager.isGameOver();
+    }
+
+    /**
+     * get the value of the given coordinats
      * @param x
      * @param y
      * @return Stringproperty with the value
      */
-    public StringProperty getValue(int x, int y){
+    public StringProperty getValue(int x, int y)
+    {
         StringProperty[][] board = myfield.getPropertyBoard();
-        
+
         StringProperty value = board[x][y];
-        
 
         return value;
     }
-    
+
 }
