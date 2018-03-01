@@ -187,34 +187,26 @@ public class GameManager
             {
                 for (int j = 0; j < 3; j++)
                 {
-
                     if (!(macroBoard[i][j].equals(PLAYER0 + "") || macroBoard[i][j].equals(PLAYER1 + "")))
                     {
                         if (macroBoard[move.getX() % 3][move.getY() % 3].equals(PLAYER0 + "") || macroBoard[move.getX() % 3][move.getY() % 3].equals(PLAYER1 + ""))
                         {
-                            System.out.println("Is player");
-                            System.out.println("Is else");
-                            macroBoard[i][j] = "-1";
-
+                            macroBoard[i][j] = "-1"; //means avalible field
                             continue;
                         }
 
-                        System.out.println("Is not player");
                         if (i == move.getX() % 3 && j == move.getY() % 3)
                         {
-                            System.out.println("Is move");
                             macroBoard[i][j] = "-1"; //means avalible field
                         }
                         else
                         {
-                            System.out.println("Is else");
                             macroBoard[i][j] = "."; //means empty field
                         }
                     }
                 }
             }
         }
-
         myfield.setMacroboard(macroBoard);
     }
 
