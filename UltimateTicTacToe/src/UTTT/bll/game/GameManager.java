@@ -3,7 +3,6 @@ package UTTT.bll.game;
 import UTTT.bll.bot.IBot;
 import UTTT.bll.field.IField;
 import UTTT.bll.move.IMove;
-import UTTT.dal.MyGameField;
 
 /**
  * This is a proposed GameManager for Ultimate Tic-Tac-Toe, the implementation
@@ -214,4 +213,9 @@ public class GameManager {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    
 }

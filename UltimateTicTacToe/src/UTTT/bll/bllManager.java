@@ -11,6 +11,7 @@ import UTTT.bll.move.IMove;
 import UTTT.bll.move.Move;
 import UTTT.dal.MyGameField;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -38,6 +39,10 @@ public class bllManager {
         StringProperty[][] board = myfield.getPropertyBoard();
         
         return board[x][y];
+    }
+    
+    public int getCurrentPlayer() {
+        return gameManager.getCurrentPlayer();
     }
     
 }

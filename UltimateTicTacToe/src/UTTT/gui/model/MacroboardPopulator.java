@@ -24,7 +24,7 @@ public class MacroboardPopulator {
     private GridPane[][] microGrids = new GridPane[3][3];
     private final static Double MACRO_GAP = 10.0;
     private final static Double MICRO_GAP = 2.0;
-    private final static Color BACKGROUND = Color.gray(0.1);
+    private final static Color BACKGROUND = Color.gray(0,1);
     private int test = 0;
     private bllManager bll;
 
@@ -93,6 +93,12 @@ public class MacroboardPopulator {
     private void setButtonAction(Button button, int Xposition, int Yposition) {
         button.setOnAction((ActionEvent event) -> {
             bll.tryMove(Xposition, Yposition);
+            if (bll.getCurrentPlayer() == 0) {
+                button.setStyle("-fx-background-color: orange");
+            }
+            else if (bll.getCurrentPlayer() == 1) {
+                button.setStyle("-fx-background-color: red");
+            }
         });
     }
 
