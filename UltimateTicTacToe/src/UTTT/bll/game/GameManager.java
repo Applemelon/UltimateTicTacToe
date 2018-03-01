@@ -271,4 +271,9 @@ public class GameManager {
 
     }
 
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    
 }
