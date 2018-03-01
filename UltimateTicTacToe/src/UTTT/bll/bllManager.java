@@ -11,7 +11,6 @@ import UTTT.bll.move.IMove;
 import UTTT.bll.move.Move;
 import UTTT.dal.MyGameField;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.Button;
 
 /**
  *
@@ -27,7 +26,11 @@ public class bllManager {
     }
     
     
-
+/**
+ * try to move
+ * @param Xposition
+ * @param Yposition 
+ */
     public void tryMove(int Xposition, int Yposition) {
         IMove move = new Move(Xposition, Yposition);
         
@@ -35,6 +38,12 @@ public class bllManager {
  
     }
     
+    /**
+     * get the value of the given koordinats
+     * @param x
+     * @param y
+     * @return Stringproperty with the value
+     */
     public StringProperty getValue(int x, int y){
         StringProperty[][] board = myfield.getPropertyBoard();
         
