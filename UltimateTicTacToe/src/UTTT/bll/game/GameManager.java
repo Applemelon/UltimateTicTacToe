@@ -258,6 +258,18 @@ public class GameManager
         }
 
         //TODO get normalboard from move and 9x9 board
+        int xMacro = move.getX()/3;
+        int yMacro = move.getY()/3;
+        
+        String[][] nineBoard = currentState.getField().getBoard();
+        
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                normalBoard[i][j] = nineBoard[xMacro * 3 + i][yMacro * 3 +j];
+            }
+        }
+        
+
         return !checkIfNormalboardIsWon(normalBoard).equals(".");
     }
 
