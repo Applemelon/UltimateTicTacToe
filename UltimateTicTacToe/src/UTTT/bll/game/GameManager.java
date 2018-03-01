@@ -227,48 +227,19 @@ public class GameManager
     {
         String[][] normalBoard = new String[3][3];
 
-        String[][] currentBoard = currentState.getField().getBoard();
+        //TODO get normalboard from move and 9x9 board
+        int xMacro = move.getX() / 3;
+        int yMacro = move.getY() / 3;
 
-        int startIndexX = 0;
-        if (move.getX() > 5)
-        {
-            startIndexX = 6;
-        }
-        else if (move.getX() > 2)
-        {
-            startIndexX = 3;
-        }
-
-        int startIndexY = 0;
-        if (move.getY() > 5)
-        {
-            startIndexY = 6;
-        }
-        else if (move.getY() > 2)
-        {
-            startIndexY = 3;
-        }
+        String[][] nineBoard = currentState.getField().getBoard();
 
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                normalBoard[i][j] = currentBoard[i + startIndexX][j + startIndexY];
+                normalBoard[i][j] = nineBoard[xMacro * 3 + i][yMacro * 3 + j];
             }
         }
-
-        //TODO get normalboard from move and 9x9 board
-        int xMacro = move.getX()/3;
-        int yMacro = move.getY()/3;
-        
-        String[][] nineBoard = currentState.getField().getBoard();
-        
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                normalBoard[i][j] = nineBoard[xMacro * 3 + i][yMacro * 3 +j];
-            }
-        }
-        
 
         return !checkIfNormalboardIsWon(normalBoard).equals(".");
     }
