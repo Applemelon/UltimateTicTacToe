@@ -281,7 +281,7 @@ public class GameManager
                 if (!(line[0].equals(".") || line[0].equals("-1")))
                 {
                     return line[0];
-                }
+                } 
             }
 
         }
