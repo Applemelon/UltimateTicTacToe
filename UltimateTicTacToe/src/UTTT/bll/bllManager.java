@@ -35,7 +35,6 @@ public class bllManager {
         IMove move = new Move(Xposition, Yposition);
         
         gameManager.UpdateGame(move);
- 
     }
     
     /**
@@ -48,10 +47,6 @@ public class bllManager {
         StringProperty[][] board = myfield.getPropertyBoard();
         
         return board[x][y];
-    }
-    
-    public int getCurrentPlayer() {
-        return gameManager.getCurrentPlayer();
     }
     
 }
