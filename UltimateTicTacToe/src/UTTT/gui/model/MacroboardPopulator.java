@@ -93,10 +93,11 @@ public class MacroboardPopulator {
     private void setButtonAction(Button button, int Xposition, int Yposition) {
         button.setOnAction((ActionEvent event) -> {
             bll.tryMove(Xposition, Yposition);
-            if (bll.getCurrentPlayer() == 0) {
+            System.out.println(bll.getValue(Xposition, Yposition));
+            if (bll.getValue(Xposition, Yposition).get().equals("0")) {
                 button.setStyle("-fx-background-color: orange");
             }
-            else if (bll.getCurrentPlayer() == 1) {
+            else if (bll.getValue(Xposition, Yposition).get().equals("1")) {
                 button.setStyle("-fx-background-color: red");
             }
         });
