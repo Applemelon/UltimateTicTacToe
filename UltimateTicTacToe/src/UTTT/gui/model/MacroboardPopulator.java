@@ -91,7 +91,7 @@ public class MacroboardPopulator {
 
         setButtonAction(button, Xposition, Yposition);
 
-        StringProperty value = bll.getValue(Xposition, Yposition);
+        StringProperty value = bll.getMicroValue(Xposition, Yposition);
 
         value.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue)
                 -> {
@@ -100,6 +100,12 @@ public class MacroboardPopulator {
             } else if (newValue.equals("0")) {
                 button.setText("O");
             }
+        });
+
+        StringProperty macroValue = bll.getMacroValue(xMakro, yMakro);
+
+        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+
         });
 
         button.setPrefSize(10000, 10000);
@@ -119,14 +125,14 @@ public class MacroboardPopulator {
                 -> {
             bll.tryMove(xPosition, yPosition);
 
-            if (bll.getValue(xPosition, yPosition).get().equals("0")) {
+            if (bll.getMicroValue(xPosition, yPosition).get().equals("0")) {
                 if (bll.isMicroGridWon() == true) {
                     setMacroVictory(PLAYER1_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 }
-            } else if (bll.getValue(xPosition, yPosition).get().equals("1")) {
+            } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
                 if (bll.isMicroGridWon() == true) {
                     setMacroVictory(PLAYER2_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
@@ -135,6 +141,12 @@ public class MacroboardPopulator {
                 }
             } else {
                 System.out.println("An error has occured");
+            }
+
+            if (bll.getMicroValue(xPosition, yPosition).get().equals("0")) {
+                button.setStyle("-fx-background-color: orange");
+            } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
+                button.setStyle("-fx-background-color: red");
             }
 
             int result = bll.isGameOver();
@@ -182,16 +194,15 @@ public class MacroboardPopulator {
 
     private void setMacroVictory(String playerColor, int xPosition, int yPosition) {
         Label label = new Label();
-        label.setStyle("-fx-background-color: " + playerColor + ";" +
-                       "-fx-font-size: 100px;" +
-                       "-fx-font-weight: bold;" +
-                       "-fx-text-fill: #ffffff;" +
-                       "-fx-alignment: center;");
+        label.setStyle("-fx-background-color: " + playerColor + ";"
+                + "-fx-font-size: 100px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #ffffff;"
+                + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
         if (playerColor.equals(PLAYER1_COLOR)) {
             label.setText("O");
-        }
-        else if (playerColor.equals(PLAYER2_COLOR)) {
+        } else if (playerColor.equals(PLAYER2_COLOR)) {
             label.setText("X");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));

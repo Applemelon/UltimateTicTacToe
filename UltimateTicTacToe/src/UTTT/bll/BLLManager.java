@@ -54,7 +54,7 @@ public class BLLManager
      * @param y
      * @return Stringproperty with the value
      */
-    public StringProperty getValue(int x, int y)
+    public StringProperty getMicroValue(int x, int y)
     {
         StringProperty[][] board = myfield.getPropertyBoard();
 
@@ -69,6 +69,20 @@ public class BLLManager
     
     public void setMicroGridWon() {
         gameManager.setMicroGridWon(false);
+    }
+    
+    /**
+     * get the value of the given coordinats
+     * @param x 0 to 2
+     * @param y 0 to 2
+     * @return Stringproperty with the value
+     */
+    public StringProperty getMacroValue(int x, int y){
+        StringProperty[][] board = myfield.getPropertyMacroBoard();
+
+        StringProperty value = board[x][y];
+
+        return value;
     }
 
 }
