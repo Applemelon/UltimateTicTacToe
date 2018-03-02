@@ -38,12 +38,12 @@ public class MacroboardPopulator {
     private GridPane[][] microGrids = new GridPane[3][3];
     private final static Double MACRO_GAP = 10.0;
     private final static Double MICRO_GAP = 2.0;
-    private final static Color BACKGROUND = Color.gray(0, 1);
+    private final static Color BACKGROUND = Color.gray(0.2);
     private final static String PLAYER1_COLOR = "EECE66";
     private final static String PLAYER2_COLOR = "#F67B5E";
     private final static String light_COLOR = "#F3F1E8";
     private final static String medium_COLOR = "#BEB1A4";
-    private final static String darkish_COLOR = "#776E65";
+    private final static String darkish_COLOR = "#77706A";
     private final static String DRAW_COLOR = "gray";
     private final static String PLAYER1 = "O";
     private final static String PLAYER2 = "X";
@@ -63,7 +63,7 @@ public class MacroboardPopulator {
         macroGridPane.setVgap(MACRO_GAP);
         macroGridPane.setHgap(MACRO_GAP);
         macroGridPane.setBackground(new Background(new BackgroundFill(BACKGROUND, CornerRadii.EMPTY, Insets.EMPTY)));
-        macroGridPane.setStyle("-fx-border-color:black;"
+        macroGridPane.setStyle("-fx-border-color:#333333;"
                 + "-fx-border-width: 5px;");
     }
 
@@ -133,9 +133,9 @@ public class MacroboardPopulator {
         macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             if (value.get().equals(".")) {
                 if (newValue.equals("-1")) {
-                    button.setStyle("-fx-background-color: " + darkish_COLOR);
-                } else if (newValue.equals(".")) {
                     button.setStyle("-fx-background-color: " + medium_COLOR);
+                } else if (newValue.equals(".")) {
+                    button.setStyle("-fx-background-color: " + darkish_COLOR);
                 }
             }
         });
@@ -158,7 +158,7 @@ public class MacroboardPopulator {
                     setMacroVictory(PLAYER1_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
                 } else if (bll.isMicroGridDraw() == true) {
-                    setMacroVictory(DRAW_COLOR, xPosition, yPosition);
+                    setMacroVictory(darkish_COLOR, xPosition, yPosition);
                     bll.setMicroGridDraw();
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
@@ -170,7 +170,7 @@ public class MacroboardPopulator {
                     setMacroVictory(PLAYER2_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
                 } else if (bll.isMicroGridDraw() == true) {
-                    setMacroVictory(DRAW_COLOR, xPosition, yPosition);
+                    setMacroVictory(darkish_COLOR, xPosition, yPosition);
                     bll.setMicroGridDraw();
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
@@ -240,8 +240,8 @@ public class MacroboardPopulator {
             label.setText("O");
         } else if (playerColor.equals(PLAYER2_COLOR)) {
             label.setText("X");
-        } else if (playerColor.equals(DRAW_COLOR)) {
-            label.setText("-");
+        } else if (playerColor.equals(darkish_COLOR)) {
+            label.setText("_");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
     }
