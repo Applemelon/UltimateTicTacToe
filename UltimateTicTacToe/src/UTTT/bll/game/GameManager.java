@@ -34,7 +34,8 @@ public class GameManager {
     private IBot bot = null;
     private IBot bot2 = null;
     private boolean microGridWon;
-
+    private boolean microGridDraw;
+    
     /**
      * Set's the currentState so the game can begin. Game expected to be played
      * Human vs Human
@@ -290,14 +291,6 @@ public class GameManager {
         return -1;
     }
 
-    public boolean isMicroGridWon() {
-        return microGridWon;
-    }
-
-    public void setMicroGridWon(boolean microGridWon) {
-        this.microGridWon = microGridWon;
-    }
-
     /**
      * Checks if the the microboard is full
      * @param move
@@ -321,8 +314,26 @@ public class GameManager {
 
             }
         }
+        microGridDraw = true;
         return true;
-
     }
+    
+    public boolean isMicroGridWon() {
+        return microGridWon;
+    }
+
+    public void setMicroGridWon(boolean microGridWon) {
+        this.microGridWon = microGridWon;
+    }
+
+    public boolean isMicroGridDraw() {
+        return microGridDraw;
+    }
+
+    public void setMicroGridDraw(boolean microGridDraw) {
+        this.microGridDraw = microGridDraw;
+    }
+    
+    
 
 }
