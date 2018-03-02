@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UTTT.gui.MainController.GameOverController">
+<BorderPane prefHeight="251.0" prefWidth="243.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UTTT.gui.MainController.GameOverController">
     <top>
         <Label text="Game Over" BorderPane.alignment="CENTER">
             <padding>
