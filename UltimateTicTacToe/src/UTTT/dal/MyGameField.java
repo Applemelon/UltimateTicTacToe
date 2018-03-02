@@ -8,6 +8,8 @@ package UTTT.dal;
 import UTTT.bll.field.IField;
 import static UTTT.bll.field.IField.EMPTY_FIELD;
 import UTTT.bll.move.IMove;
+import UTTT.bll.move.Move;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -62,10 +64,27 @@ public class MyGameField implements IField
         }
     }
 
+    /**
+     * Not tested. Get all available slots.
+     * @return
+     */
     @Override
     public List<IMove> getAvailableMoves()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<IMove> listOfMoves = new ArrayList<>();
+
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (board[i][j].get().equalsIgnoreCase(AVAILABLE_FIELD))
+                {
+                    listOfMoves.add(new Move(i, j));
+                }
+            }
+        }
+
+        return listOfMoves;
     }
 
     @Override
@@ -175,7 +194,7 @@ public class MyGameField implements IField
     {
         return board;
     }
-    
+
     /**
      * get the macroboard as a string property 2 dimensional array
      * @return StringProperty[3][3]
@@ -184,6 +203,5 @@ public class MyGameField implements IField
     {
         return macroBoard;
     }
-    
-    
+
 }
