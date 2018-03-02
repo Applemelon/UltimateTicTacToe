@@ -32,7 +32,8 @@ import javafx.stage.Stage;
  *
  * @author janvanzetten
  */
-public class MacroboardPopulator {
+public class MacroboardPopulator
+{
 
     private GridPane macroGridPane;
     private GridPane[][] microGrids = new GridPane[3][3];
@@ -48,7 +49,8 @@ public class MacroboardPopulator {
     @FXML
     private Label lblCurrentPlayer;
 
-    public MacroboardPopulator(GridPane macroGridPane) {
+    public MacroboardPopulator(GridPane macroGridPane)
+    {
         this.macroGridPane = macroGridPane;
         bll = new BLLManager();
 
@@ -66,15 +68,20 @@ public class MacroboardPopulator {
     /**
      * sets microgrids with content in the microGrid field
      */
-    private void makeMicroGrids() {
+    private void makeMicroGrids()
+    {
 
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
                 microGrids[x][y] = new GridPane();
                 microGrids[x][y].setVgap(MICRO_GAP);
                 microGrids[x][y].setHgap(MICRO_GAP);
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
                         microGrids[x][y].add(getButton(i, j, x, y), i, j);
 
                     }
@@ -90,7 +97,8 @@ public class MacroboardPopulator {
      *
      * @return button
      */
-    private Button getButton(int xMicro, int yMicro, int xMakro, int yMakro) {
+    private Button getButton(int xMicro, int yMicro, int xMakro, int yMakro)
+    {
         int Xposition = xMakro * 3 + xMicro;
         int Yposition = yMakro * 3 + yMicro;
 
@@ -100,37 +108,47 @@ public class MacroboardPopulator {
 
         setButtonAction(button, Xposition, Yposition);
         buttonAvailabilityListener(button, Xposition, Yposition, xMakro, yMakro);
-        
+
         return button;
     }
-    
+
     /**
      * Changes color of buttons according to whether they can be pressed or not.
      * @param button
      * @param Xposition
      * @param Yposition
      * @param xMakro
-     * @param yMakro 
+     * @param yMakro
      */
-    private void buttonAvailabilityListener(Button button, int Xposition, int Yposition, int xMakro, int yMakro) {
+    private void buttonAvailabilityListener(Button button, int Xposition, int Yposition, int xMakro, int yMakro)
+    {
         StringProperty value = bll.getMicroValue(Xposition, Yposition);
 
         value.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue)
-                -> {
-            if (newValue.equals("1")) {
+                ->
+        {
+            if (newValue.equals("1"))
+            {
                 button.setText("X");
-            } else if (newValue.equals("0")) {
+            }
+            else if (newValue.equals("0"))
+            {
                 button.setText("O");
             }
         });
 
         StringProperty macroValue = bll.getMacroValue(xMakro, yMakro);
 
-        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (value.get().equals(".")) {
-                if (newValue.equals("-1")) {
+        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
+        {
+            if (value.get().equals("."))
+            {
+                if (newValue.equals("-1"))
+                {
                     button.setStyle("-fx-background-color: gray");
-                } else if (newValue.equals(".")) {
+                }
+                else if (newValue.equals("."))
+                {
                     button.setStyle("-fx-background-color: lightgrey");
                 }
             }
@@ -144,40 +162,58 @@ public class MacroboardPopulator {
      * @param the x position a value from 0 to 8
      * @param the y position a value from 0 to 8
      */
-    private void setButtonAction(Button button, int xPosition, int yPosition) {
+    private void setButtonAction(Button button, int xPosition, int yPosition)
+    {
         button.setOnAction((ActionEvent event)
-                -> {
+                ->
+        {
             bll.tryMove(xPosition, yPosition);
 
-            if (bll.getMicroValue(xPosition, yPosition).get().equals("0")) {
-                if (bll.isMicroGridWon() == true) {
+            if (bll.getMicroValue(xPosition, yPosition).get().equals("0"))
+            {
+                if (bll.isMicroGridWon() == true)
+                {
                     setMacroVictory(PLAYER1_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
-                } else {
+                }
+                else
+                {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 }
                 lblCurrentPlayer.setText("Current player: " + PLAYER2);
 
-            } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
-                if (bll.isMicroGridWon() == true) {
+            }
+            else if (bll.getMicroValue(xPosition, yPosition).get().equals("1"))
+            {
+                if (bll.isMicroGridWon() == true)
+                {
                     setMacroVictory(PLAYER2_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
-                } else {
+                }
+                else
+                {
                     button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
                 }
                 lblCurrentPlayer.setText("Current player: " + PLAYER1);
-            } else {
+            }
+            else
+            {
                 System.out.println("An error has occured");
             }
 
-            if (bll.getMicroValue(xPosition, yPosition).get().equals("0")) {
+            if (bll.getMicroValue(xPosition, yPosition).get().equals("0"))
+            {
                 button.setStyle("-fx-background-color: orange");
-            } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
+            }
+            else if (bll.getMicroValue(xPosition, yPosition).get().equals("1"))
+            {
                 button.setStyle("-fx-background-color: red");
             }
 
             int result = bll.isGameOver();
-            if (result != -1) {
+            System.out.println(result);
+            if (result != -1)
+            {
                 openGameOverView(result);
             }
         });
@@ -188,16 +224,21 @@ public class MacroboardPopulator {
      *
      * @param MacroGridPane the MacroGridPane
      */
-    private void setMircoGridsinMacroGrid(GridPane macroGridPane) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+    private void setMircoGridsinMacroGrid(GridPane macroGridPane)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
                 macroGridPane.add(microGrids[i][j], i, j);
             }
         }
     }
 
-    private void openGameOverView(int player) {
-        try {
+    private void openGameOverView(int player)
+    {
+        try
+        {
             Stage newStage = new Stage();
             newStage.initModality(Modality.APPLICATION_MODAL);
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/GameOverView.fxml"));
@@ -213,13 +254,16 @@ public class MacroboardPopulator {
             newStage.setTitle("Game Over!");
             newStage.setScene(scene);
             newStage.show();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Could not open Game Over View", ButtonType.OK);
             alert.showAndWait();
         }
     }
 
-    private void setMacroVictory(String playerColor, int xPosition, int yPosition) {
+    private void setMacroVictory(String playerColor, int xPosition, int yPosition)
+    {
         Label label = new Label();
         label.setStyle("-fx-background-color: " + playerColor + ";"
                 + "-fx-font-size: 100px;"
@@ -228,15 +272,19 @@ public class MacroboardPopulator {
                 + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
 
-        if (playerColor.equals(PLAYER1_COLOR)) {
+        if (playerColor.equals(PLAYER1_COLOR))
+        {
             label.setText("O");
-        } else if (playerColor.equals(PLAYER2_COLOR)) {
+        }
+        else if (playerColor.equals(PLAYER2_COLOR))
+        {
             label.setText("X");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
     }
 
-    public void getCurrentPlayerLabel(Label lblCurrentPlayer) {
+    public void getCurrentPlayerLabel(Label lblCurrentPlayer)
+    {
         this.lblCurrentPlayer = lblCurrentPlayer;
         lblCurrentPlayer.setText("Current player: " + PLAYER1);
     }
