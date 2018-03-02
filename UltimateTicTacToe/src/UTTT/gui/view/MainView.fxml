@@ -32,6 +32,6 @@
             </font>
         </Label>
       <Label fx:id="lblCurrentPlayer" layoutX="14.0" layoutY="620.0" prefHeight="29.0" prefWidth="151.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
-      <Button layoutX="521.0" layoutY="613.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <Button layoutX="521.0" layoutY="613.0" mnemonicParsing="false" onAction="#handleNewGame" text="Restart game" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
     </children>
 </AnchorPane>

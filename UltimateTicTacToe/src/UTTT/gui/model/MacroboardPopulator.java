@@ -250,4 +250,8 @@ public class MacroboardPopulator {
         this.lblCurrentPlayer = lblCurrentPlayer;
         lblCurrentPlayer.setText("Current player: " + PLAYER1);
     }
+    
+    public Stage getMainStage() {
+        return ((Stage) macroGridPane.getScene().getWindow());
+    }
 }
