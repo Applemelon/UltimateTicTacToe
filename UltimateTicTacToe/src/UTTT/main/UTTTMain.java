@@ -11,6 +11,7 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +31,7 @@ public class UTTTMain extends Application {
         stage.setMinHeight(480.0);
         stage.setMinWidth(420.0);
         stage.setTitle("The Ulitimate Tic Tac Toe");
+        stage.getIcons().add(new Image("/UTTT/main/UltimateTicTatToeLogo.png"));
         stage.show();
     }
 
