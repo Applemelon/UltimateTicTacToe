@@ -44,6 +44,7 @@ public class MacroboardPopulator {
     private final static String light_COLOR = "#F3F1E8";
     private final static String medium_COLOR = "#BEB1A4";
     private final static String darkish_COLOR = "#77706A";
+
     private final static String PLAYER1 = "O";
     private final static String PLAYER2 = "X";
     private int test = 0;
@@ -104,17 +105,17 @@ public class MacroboardPopulator {
 
         setButtonAction(button, Xposition, Yposition);
         buttonAvailabilityListener(button, Xposition, Yposition, xMakro, yMakro);
-        
+
         return button;
     }
-    
+
     /**
      * Changes color of buttons according to whether they can be pressed or not.
      * @param button
      * @param Xposition
      * @param Yposition
      * @param xMakro
-     * @param yMakro 
+     * @param yMakro
      */
     private void buttonAvailabilityListener(Button button, int Xposition, int Yposition, int xMakro, int yMakro) {
         StringProperty value = bll.getMicroValue(Xposition, Yposition);
@@ -160,6 +161,7 @@ public class MacroboardPopulator {
                 } 
                 else if (bll.isMicroGridDraw() == true) {
                     setMacroVictory(darkish_COLOR, xPosition, yPosition);
+
                     bll.setMicroGridDraw();
                 } 
                 else {
@@ -175,6 +177,7 @@ public class MacroboardPopulator {
                 } 
                 else if (bll.isMicroGridDraw() == true) {
                     setMacroVictory(darkish_COLOR, xPosition, yPosition);
+
                     bll.setMicroGridDraw();
                 } 
                 else {
@@ -243,17 +246,21 @@ public class MacroboardPopulator {
                 + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
 
-        if (playerColor.equals(PLAYER1_COLOR)) {
+        if (playerColor.equals(PLAYER1_COLOR))
+        {
             label.setText("O");
-        } else if (playerColor.equals(PLAYER2_COLOR)) {
+        }
+        else if (playerColor.equals(PLAYER2_COLOR))
+        {
             label.setText("X");
         } else if (playerColor.equals(darkish_COLOR)) {
-            label.setText("_");
+            label.setText("tie");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
     }
 
-    public void getCurrentPlayerLabel(Label lblCurrentPlayer) {
+    public void getCurrentPlayerLabel(Label lblCurrentPlayer)
+    {
         this.lblCurrentPlayer = lblCurrentPlayer;
         lblCurrentPlayer.setText("Current player: " + PLAYER1);
     }

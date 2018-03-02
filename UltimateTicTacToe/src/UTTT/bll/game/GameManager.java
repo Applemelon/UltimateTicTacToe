@@ -29,6 +29,7 @@ public class GameManager {
     private int currentPlayer = 0; //player0 == 0 && player1 == 1
     private final static int PLAYER0 = 0;
     private final static int PLAYER1 = 1;
+    private final static int DRAW = -2;
     private final static String macroDraw = "draw";
     private GameMode mode = GameMode.HumanVsHuman;
     private IBot bot = null;
@@ -111,7 +112,8 @@ public class GameManager {
         assert (mode != GameMode.HumanVsHuman);
 
         //Check if player is bot, if so, get bot input and update the state based on that.
-        if (mode == GameMode.HumanVsBot && currentPlayer == 1) {
+        if (mode == GameMode.HumanVsBot && currentPlayer == 1)
+        {
             //Check bot is not equal to null, and throw an exception if it is.
             assert (bot != null);
 
@@ -143,7 +145,8 @@ public class GameManager {
         return false;
     }
 
-    private void UpdateBoard(IMove move) {
+    private void UpdateBoard(IMove move)
+    {
         IField myfield = currentState.getField();
         String[][] board = myfield.getBoard();
         board[move.getX()][move.getY()] = currentPlayer + "";
@@ -288,7 +291,23 @@ public class GameManager {
         } else if (checkIfNormalboardIsWon(currentState.getField().getMacroboard()).equals(PLAYER1 + "")) {
             return PLAYER1;
         }
-        return -1;
+        else
+        {
+            String[][] macroBoard = currentState.getField().getMacroboard();
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (!(macroBoard[i][j].equalsIgnoreCase(PLAYER0 + "")
+                            || macroBoard[i][j].equalsIgnoreCase(PLAYER1 + "")
+                            || macroBoard[i][j].equalsIgnoreCase(macroDraw)))
+                    {
+                        return -1;
+                    }
+                }
+            }
+            return DRAW;
+        }
     }
 
     /**

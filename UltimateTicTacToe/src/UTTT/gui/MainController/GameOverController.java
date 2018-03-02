@@ -32,6 +32,8 @@ public class GameOverController implements Initializable
         "Player One", "Player Two"
     };
     private final String WINNING_PRETEXT = "The Winner is ";
+    private final String DRAW_TEXT = "It ended as a draw";
+    private final int DRAW = -2;
 
     @FXML
     private Label lblMessage;
@@ -53,6 +55,10 @@ public class GameOverController implements Initializable
         if (player > -1 && player < PLAYERS.length)
         {
             this.lblMessage.setText(WINNING_PRETEXT + PLAYERS[player]);
+        }
+        else if (player == DRAW)
+        {
+            this.lblMessage.setText(DRAW_TEXT);
         }
     }
 
