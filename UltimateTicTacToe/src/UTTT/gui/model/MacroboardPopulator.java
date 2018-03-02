@@ -108,6 +108,14 @@ public class MacroboardPopulator
                 button.setText("O");
             }
         });
+        
+        StringProperty macroValue = bll.getMacroValue(xMakro, yMakro);
+        
+        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->{
+            
+            
+            
+        });
 
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");

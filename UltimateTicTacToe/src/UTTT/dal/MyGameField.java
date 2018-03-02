@@ -37,7 +37,7 @@ public class MyGameField implements IField
         {
             for (int j = 0; j < 3; j++)
             {
-                macroBoard[i][j].set(AVAILABLE_FIELD);
+                macroBoard[i][j] = new SimpleStringProperty(AVAILABLE_FIELD);
             }
         }
 
