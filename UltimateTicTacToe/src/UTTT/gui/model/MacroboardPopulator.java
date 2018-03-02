@@ -11,6 +11,7 @@ import java.io.IOException;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -40,8 +41,12 @@ public class MacroboardPopulator {
     private final static Color BACKGROUND = Color.gray(0, 1);
     private final static String PLAYER1_COLOR = "orange";
     private final static String PLAYER2_COLOR = "red";
+    private final static String PLAYER1 = "O";
+    private final static String PLAYER2 = "X";
     private int test = 0;
     private BLLManager bll;
+    @FXML
+    private Label lblCurrentPlayer;
 
     public MacroboardPopulator(GridPane macroGridPane) {
         this.macroGridPane = macroGridPane;
@@ -54,6 +59,8 @@ public class MacroboardPopulator {
         macroGridPane.setVgap(MACRO_GAP);
         macroGridPane.setHgap(MACRO_GAP);
         macroGridPane.setBackground(new Background(new BackgroundFill(BACKGROUND, CornerRadii.EMPTY, Insets.EMPTY)));
+        macroGridPane.setStyle("-fx-border-color:black;"
+                + "-fx-border-width: 5px;");
     }
 
     /**
@@ -88,9 +95,24 @@ public class MacroboardPopulator {
         int Yposition = yMakro * 3 + yMicro;
 
         Button button = new Button();
+        button.setPrefSize(10000, 10000);
+        button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
 
         setButtonAction(button, Xposition, Yposition);
-
+        buttonAvailabilityListener(button, Xposition, Yposition, xMakro, yMakro);
+        
+        return button;
+    }
+    
+    /**
+     * Changes color of buttons according to whether they can be pressed or not.
+     * @param button
+     * @param Xposition
+     * @param Yposition
+     * @param xMakro
+     * @param yMakro 
+     */
+    private void buttonAvailabilityListener(Button button, int Xposition, int Yposition, int xMakro, int yMakro) {
         StringProperty value = bll.getMicroValue(Xposition, Yposition);
 
         value.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue)
@@ -103,23 +125,16 @@ public class MacroboardPopulator {
         });
 
         StringProperty macroValue = bll.getMacroValue(xMakro, yMakro);
-        
-        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->{
-            if (value.get().equals(".")){
-                if (newValue.equals("-1")){
+
+        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (value.get().equals(".")) {
+                if (newValue.equals("-1")) {
                     button.setStyle("-fx-background-color: gray");
-                }
-                else if (newValue.equals(".")){
+                } else if (newValue.equals(".")) {
                     button.setStyle("-fx-background-color: lightgrey");
                 }
             }
-            
-            
         });
-
-        button.setPrefSize(10000, 10000);
-        button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
-        return button;
     }
 
     /**
@@ -141,6 +156,8 @@ public class MacroboardPopulator {
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 }
+                lblCurrentPlayer.setText("Current player: " + PLAYER2);
+
             } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
                 if (bll.isMicroGridWon() == true) {
                     setMacroVictory(PLAYER2_COLOR, xPosition, yPosition);
@@ -148,6 +165,7 @@ public class MacroboardPopulator {
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
                 }
+                lblCurrentPlayer.setText("Current player: " + PLAYER1);
             } else {
                 System.out.println("An error has occured");
             }
@@ -209,11 +227,17 @@ public class MacroboardPopulator {
                 + "-fx-text-fill: #ffffff;"
                 + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
+
         if (playerColor.equals(PLAYER1_COLOR)) {
             label.setText("O");
         } else if (playerColor.equals(PLAYER2_COLOR)) {
             label.setText("X");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
+    }
+
+    public void getCurrentPlayerLabel(Label lblCurrentPlayer) {
+        this.lblCurrentPlayer = lblCurrentPlayer;
+        lblCurrentPlayer.setText("Current player: " + PLAYER1);
     }
 }

@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -21,6 +22,8 @@ public class MainViewController implements Initializable {
 
     @FXML
     private GridPane macroGridPane;
+    @FXML
+    private Label lblCurrentPlayer;
 
     /**
      * Initializes the controller class.
@@ -28,6 +31,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         MacroboardPopulator macroPop = new MacroboardPopulator(macroGridPane);
+        macroPop.getCurrentPlayerLabel(lblCurrentPlayer);
     }    
     
 }
