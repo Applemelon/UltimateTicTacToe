@@ -7,7 +7,6 @@ package UTTT.gui.model;
 
 import UTTT.bll.bllManager;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
