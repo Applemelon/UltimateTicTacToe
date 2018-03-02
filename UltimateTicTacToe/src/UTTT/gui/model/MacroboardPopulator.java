@@ -241,7 +241,7 @@ public class MacroboardPopulator {
         } else if (playerColor.equals(PLAYER2_COLOR)) {
             label.setText("X");
         } else if (playerColor.equals(DARKISH_COLOR)) {
-            label.setText("_");
+            label.setText("tie");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
     }
