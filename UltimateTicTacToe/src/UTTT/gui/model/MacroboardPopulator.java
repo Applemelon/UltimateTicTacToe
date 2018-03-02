@@ -95,7 +95,7 @@ public class MacroboardPopulator
 
         setButtonAction(button, Xposition, Yposition);
 
-        StringProperty value = bll.getValue(Xposition, Yposition);
+        StringProperty value = bll.getMicroValue(Xposition, Yposition);
 
         value.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
         {
@@ -126,11 +126,11 @@ public class MacroboardPopulator
         {
             bll.tryMove(xPosition, yPosition);
 
-            if (bll.getValue(xPosition, yPosition).get().equals("0"))
+            if (bll.getMicroValue(xPosition, yPosition).get().equals("0"))
             {
                 button.setStyle("-fx-background-color: orange");
             }
-            else if (bll.getValue(xPosition, yPosition).get().equals("1"))
+            else if (bll.getMicroValue(xPosition, yPosition).get().equals("1"))
             {
                 button.setStyle("-fx-background-color: red");
             }

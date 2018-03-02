@@ -20,12 +20,12 @@ public class MyGameField implements IField
 {
 
     private StringProperty[][] board;
-    private String[][] macroBoard;
+    private StringProperty[][] macroBoard;
 
     public MyGameField()
     {
         board = new StringProperty[9][9];
-        macroBoard = new String[3][3];
+        macroBoard = new StringProperty[3][3];
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -37,7 +37,7 @@ public class MyGameField implements IField
         {
             for (int j = 0; j < 3; j++)
             {
-                macroBoard[i][j] = AVAILABLE_FIELD;
+                macroBoard[i][j].set(AVAILABLE_FIELD);
             }
         }
 
@@ -57,7 +57,7 @@ public class MyGameField implements IField
         {
             for (int j = 0; j < 3; j++)
             {
-                macroBoard[i][j] = AVAILABLE_FIELD;
+                macroBoard[i][j].set(AVAILABLE_FIELD);
             }
         }
     }
@@ -112,7 +112,7 @@ public class MyGameField implements IField
         int macroX = x / 3;
         int macroY = y / 3;
 
-        return macroBoard[macroX][macroY].equals(AVAILABLE_FIELD);
+        return macroBoard[macroX][macroY].get().equals(AVAILABLE_FIELD);
     }
 
     @Override
@@ -132,7 +132,15 @@ public class MyGameField implements IField
     @Override
     public String[][] getMacroboard()
     {
-        return macroBoard;
+        String[][] stringMacroBoard = new String[3][3];
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                stringMacroBoard[i][j] = macroBoard[i][j].get();
+            }
+        }
+        return stringMacroBoard;
     }
 
     @Override
@@ -150,7 +158,13 @@ public class MyGameField implements IField
     @Override
     public void setMacroboard(String[][] macroboard)
     {
-        this.macroBoard = macroboard;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                this.macroBoard[i][j].set(macroboard[i][j]);
+            }
+        }
     }
 
     /**
@@ -161,4 +175,15 @@ public class MyGameField implements IField
     {
         return board;
     }
+    
+    /**
+     * get the macroboard as a string property 2 dimensional array
+     * @return StringProperty[3][3]
+     */
+    public StringProperty[][] getPropertyMacroBoard()
+    {
+        return macroBoard;
+    }
+    
+    
 }
