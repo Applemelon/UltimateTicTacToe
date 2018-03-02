@@ -39,8 +39,11 @@ public class MacroboardPopulator {
     private final static Double MACRO_GAP = 10.0;
     private final static Double MICRO_GAP = 2.0;
     private final static Color BACKGROUND = Color.gray(0, 1);
-    private final static String PLAYER1_COLOR = "orange";
-    private final static String PLAYER2_COLOR = "red";
+    private final static String PLAYER1_COLOR = "EECE66";
+    private final static String PLAYER2_COLOR = "#F67B5E";
+    private final static String light_COLOR = "#F3F1E8";
+    private final static String medium_COLOR = "#BEB1A4";
+    private final static String darkish_COLOR = "#776E65";
     private final static String PLAYER1 = "O";
     private final static String PLAYER2 = "X";
     private int test = 0;
@@ -129,9 +132,9 @@ public class MacroboardPopulator {
         macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             if (value.get().equals(".")) {
                 if (newValue.equals("-1")) {
-                    button.setStyle("-fx-background-color: gray");
+                    button.setStyle("-fx-background-color: " + darkish_COLOR);
                 } else if (newValue.equals(".")) {
-                    button.setStyle("-fx-background-color: lightgrey");
+                    button.setStyle("-fx-background-color: " + medium_COLOR);
                 }
             }
         });
@@ -171,9 +174,9 @@ public class MacroboardPopulator {
             }
 
             if (bll.getMicroValue(xPosition, yPosition).get().equals("0")) {
-                button.setStyle("-fx-background-color: orange");
+                button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
             } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
-                button.setStyle("-fx-background-color: red");
+                button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
             }
 
             int result = bll.isGameOver();
@@ -224,7 +227,7 @@ public class MacroboardPopulator {
         label.setStyle("-fx-background-color: " + playerColor + ";"
                 + "-fx-font-size: 100px;"
                 + "-fx-font-weight: bold;"
-                + "-fx-text-fill: #ffffff;"
+                + "-fx-text-fill: " + light_COLOR + ";"
                 + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
 
