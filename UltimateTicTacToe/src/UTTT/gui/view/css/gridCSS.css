@@ -9,13 +9,13 @@ and open the template in the editor.
 */
 
 .button {
-    -fx-background-color: gray;
+    -fx-background-color: #BEB1A4;
     -fx-background-radius: 0.0;
     -fx-background-insets: 0.0;
-    -fx-text-fill: white;
+    -fx-text-fill: #F3F1E8;
 }
 
 .button:pressed{
-    -fx-background-color: lightgrey;
+    -fx-background-color: #776E65;
 }
 
