@@ -30,7 +30,7 @@ public class UTTTMain extends Application {
         stage.setScene(scene);
         stage.setMinHeight(480.0);
         stage.setMinWidth(420.0);
-        stage.setTitle("The Ulitimate Tic Tac Toe");
+        stage.setTitle("The Ultimate Tic Tac Toe");
         stage.getIcons().add(new Image("/UTTT/main/UltimateTicTatToeLogo.png"));
         stage.show();
     }
