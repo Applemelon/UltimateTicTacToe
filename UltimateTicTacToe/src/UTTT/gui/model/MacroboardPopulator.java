@@ -54,6 +54,8 @@ public class MacroboardPopulator {
         macroGridPane.setVgap(MACRO_GAP);
         macroGridPane.setHgap(MACRO_GAP);
         macroGridPane.setBackground(new Background(new BackgroundFill(BACKGROUND, CornerRadii.EMPTY, Insets.EMPTY)));
+        macroGridPane.setStyle("-fx-border-color:black;" +
+                               "-fx-border-width: 5px;");
     }
 
     /**
@@ -200,6 +202,7 @@ public class MacroboardPopulator {
                 + "-fx-text-fill: #ffffff;"
                 + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
+        
         if (playerColor.equals(PLAYER1_COLOR)) {
             label.setText("O");
         } else if (playerColor.equals(PLAYER2_COLOR)) {
