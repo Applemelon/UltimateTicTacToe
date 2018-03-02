@@ -24,6 +24,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -51,6 +52,8 @@ public class MacroboardPopulator {
     private BLLManager bll;
     @FXML
     private Label lblCurrentPlayer;
+    @FXML
+    private Pane currentplayerPane;
 
     public MacroboardPopulator(GridPane macroGridPane) {
         this.macroGridPane = macroGridPane;
@@ -168,6 +171,7 @@ public class MacroboardPopulator {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 }
                 lblCurrentPlayer.setText("Current player: " + PLAYER2);
+                currentplayerPane.setStyle("-fx-background-color: " + PLAYER2_COLOR);
                 
 
             } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
@@ -184,6 +188,7 @@ public class MacroboardPopulator {
                     button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
                 }
                 lblCurrentPlayer.setText("Current player: " + PLAYER1);
+                currentplayerPane.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 
             }
 
@@ -259,10 +264,12 @@ public class MacroboardPopulator {
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
     }
 
-    public void getCurrentPlayerLabel(Label lblCurrentPlayer)
+    public void getCurrentPlayerLabel(Label lblCurrentPlayer, Pane currentplayerPane)
     {
         this.lblCurrentPlayer = lblCurrentPlayer;
+        this.currentplayerPane = currentplayerPane;
         lblCurrentPlayer.setText("Current player: " + PLAYER1);
+        currentplayerPane.setStyle("-fx-background-color: " + PLAYER1_COLOR);
     }
     
     public Stage getMainStage() {
