@@ -11,6 +11,7 @@ import java.io.IOException;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -40,8 +41,12 @@ public class MacroboardPopulator {
     private final static Color BACKGROUND = Color.gray(0, 1);
     private final static String PLAYER1_COLOR = "orange";
     private final static String PLAYER2_COLOR = "red";
+    private final static String PLAYER1 = "O";
+    private final static String PLAYER2 = "X";
     private int test = 0;
     private BLLManager bll;
+    @FXML
+    private Label lblCurrentPlayer;
 
     public MacroboardPopulator(GridPane macroGridPane) {
         this.macroGridPane = macroGridPane;
@@ -143,6 +148,8 @@ public class MacroboardPopulator {
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 }
+                lblCurrentPlayer.setText("Current player: " + PLAYER2);
+                
             } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
                 if (bll.isMicroGridWon() == true) {
                     setMacroVictory(PLAYER2_COLOR, xPosition, yPosition);
@@ -150,6 +157,7 @@ public class MacroboardPopulator {
                 } else {
                     button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
                 }
+                lblCurrentPlayer.setText("Current player: " + PLAYER1);
             } else {
                 System.out.println("An error has occured");
             }
@@ -218,5 +226,10 @@ public class MacroboardPopulator {
             label.setText("X");
         }
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
+    }
+
+    public void getCurrentPlayerLabel(Label lblCurrentPlayer) {
+        this.lblCurrentPlayer = lblCurrentPlayer;
+        lblCurrentPlayer.setText("Current player: " + PLAYER1);
     }
 }

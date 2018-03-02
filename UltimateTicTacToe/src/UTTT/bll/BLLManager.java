@@ -63,10 +63,16 @@ public class BLLManager
         return value;
     }
     
+    /**
+     * @return true if a microgrid has been won.
+     */
     public boolean isMicroGridWon() {
         return(gameManager.isMicroGridWon());
     }
     
+    /**
+     * Resets the microgridWon value to false.
+     */
     public void setMicroGridWon() {
         gameManager.setMicroGridWon(false);
     }
