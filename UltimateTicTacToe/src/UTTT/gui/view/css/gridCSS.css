@@ -15,6 +15,11 @@ and open the template in the editor.
     -fx-text-fill: #F3F1E8;
 }
 
+#microButton {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+
 .button:pressed{
     -fx-background-color: #776E65;
 }

@@ -44,7 +44,6 @@ public class MacroboardPopulator {
     private final static String light_COLOR = "#F3F1E8";
     private final static String medium_COLOR = "#BEB1A4";
     private final static String darkish_COLOR = "#77706A";
-    private final static String DRAW_COLOR = "gray";
     private final static String PLAYER1 = "O";
     private final static String PLAYER2 = "X";
     private int test = 0;
@@ -101,6 +100,7 @@ public class MacroboardPopulator {
         Button button = new Button();
         button.setPrefSize(10000, 10000);
         button.getStylesheets().add("/UTTT/gui/view/css/gridCSS.css");
+        button.setId("microButton");
 
         setButtonAction(button, Xposition, Yposition);
         buttonAvailabilityListener(button, Xposition, Yposition, xMakro, yMakro);
@@ -157,30 +157,37 @@ public class MacroboardPopulator {
                 if (bll.isMicroGridWon() == true) {
                     setMacroVictory(PLAYER1_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
-                } else if (bll.isMicroGridDraw() == true) {
+                } 
+                else if (bll.isMicroGridDraw() == true) {
                     setMacroVictory(darkish_COLOR, xPosition, yPosition);
                     bll.setMicroGridDraw();
-                } else {
+                } 
+                else {
                     button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
                 }
                 lblCurrentPlayer.setText("Current player: " + PLAYER2);
+                
 
             } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
                 if (bll.isMicroGridWon() == true) {
                     setMacroVictory(PLAYER2_COLOR, xPosition, yPosition);
                     bll.setMicroGridWon();
-                } else if (bll.isMicroGridDraw() == true) {
+                } 
+                else if (bll.isMicroGridDraw() == true) {
                     setMacroVictory(darkish_COLOR, xPosition, yPosition);
                     bll.setMicroGridDraw();
-                } else {
+                } 
+                else {
                     button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
                 }
                 lblCurrentPlayer.setText("Current player: " + PLAYER1);
+                
             }
 
             if (bll.getMicroValue(xPosition, yPosition).get().equals("0")) {
                 button.setStyle("-fx-background-color: " + PLAYER1_COLOR);
-            } else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
+            } 
+            else if (bll.getMicroValue(xPosition, yPosition).get().equals("1")) {
                 button.setStyle("-fx-background-color: " + PLAYER2_COLOR);
             }
 
