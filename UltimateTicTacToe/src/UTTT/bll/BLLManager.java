@@ -78,6 +78,20 @@ public class BLLManager
     }
     
     /**
+     * @return true if a microgrid has been won.
+     */
+    public boolean isMicroGridDraw() {
+        return(gameManager.isMicroGridDraw());
+    }
+    
+    /**
+     * Resets the microgridWon value to false.
+     */
+    public void setMicroGridDraw() {
+        gameManager.setMicroGridDraw(false);
+    }
+    
+    /**
      * get the value of the given coordinats
      * @param x 0 to 2
      * @param y 0 to 2
