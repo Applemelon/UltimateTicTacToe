@@ -104,17 +104,17 @@ public class MacroboardPopulator {
 
         setButtonAction(button, Xposition, Yposition);
         buttonAvailabilityListener(button, Xposition, Yposition, xMakro, yMakro);
-        
+
         return button;
     }
-    
+
     /**
      * Changes color of buttons according to whether they can be pressed or not.
      * @param button
      * @param Xposition
      * @param Yposition
      * @param xMakro
-     * @param yMakro 
+     * @param yMakro
      */
     private void buttonAvailabilityListener(Button button, int Xposition, int Yposition, int xMakro, int yMakro) {
         StringProperty value = bll.getMicroValue(Xposition, Yposition);
@@ -236,9 +236,12 @@ public class MacroboardPopulator {
                 + "-fx-alignment: center;");
         label.setMaxSize(5000, 5000);
 
-        if (playerColor.equals(PLAYER1_COLOR)) {
+        if (playerColor.equals(PLAYER1_COLOR))
+        {
             label.setText("O");
-        } else if (playerColor.equals(PLAYER2_COLOR)) {
+        }
+        else if (playerColor.equals(PLAYER2_COLOR))
+        {
             label.setText("X");
         } else if (playerColor.equals(DARKISH_COLOR)) {
             label.setText("tie");
@@ -246,7 +249,8 @@ public class MacroboardPopulator {
         macroGridPane.add(label, (xPosition / 3), (yPosition / 3));
     }
 
-    public void getCurrentPlayerLabel(Label lblCurrentPlayer) {
+    public void getCurrentPlayerLabel(Label lblCurrentPlayer)
+    {
         this.lblCurrentPlayer = lblCurrentPlayer;
         lblCurrentPlayer.setText("Current player: " + PLAYER1);
     }
