@@ -62,5 +62,13 @@ public class BLLManager
 
         return value;
     }
+    
+    public boolean isMicroGridWon() {
+        return(gameManager.isMicroGridWon());
+    }
+    
+    public void setMicroGridWon() {
+        gameManager.setMicroGridWon(false);
+    }
 
 }

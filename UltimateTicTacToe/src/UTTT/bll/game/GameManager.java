@@ -34,6 +34,7 @@ public class GameManager
     private GameMode mode = GameMode.HumanVsHuman;
     private IBot bot = null;
     private IBot bot2 = null;
+    private boolean microGridWon;
 
     /**
      * Set's the currentState so the game can begin. Game expected to be played
@@ -233,7 +234,6 @@ public class GameManager
                 normalBoard[i][j] = nineBoard[xMacro * 3 + i][yMacro * 3 + j];
             }
         }
-
         return !checkIfNormalboardIsWon(normalBoard).equals(".");
     }
 
@@ -247,7 +247,7 @@ public class GameManager
     {
         String[] line = new String[3];
 
-        //horisontal
+        //vertical
         for (int i = 0; i < 3; i++)
         {
             System.arraycopy(normalBoard[i], 0, line, 0, 3);
@@ -256,13 +256,14 @@ public class GameManager
             {
                 if (!(line[0].equals(".") || line[0].equals("-1")))
                 {
+                    microGridWon = true;
                     return line[0];
                 }
             }
 
         }
 
-        //vertical
+        //horizontal
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -274,6 +275,7 @@ public class GameManager
             {
                 if (!(line[0].equals(".") || line[0].equals("-1")))
                 {
+                    microGridWon = true;
                     return line[0];
                 }
             }
@@ -289,6 +291,7 @@ public class GameManager
         {
             if (!(line[0].equals(".") || line[0].equals("-1")))
             {
+                microGridWon = true;
                 return line[0];
             }
         }
@@ -301,6 +304,7 @@ public class GameManager
         {
             if (!(line[0].equals(".") || line[0].equals("-1")))
             {
+                microGridWon = true;
                 return line[0];
             }
         }
@@ -325,4 +329,14 @@ public class GameManager
         }
         return -1;
     }
+
+    public boolean isMicroGridWon() {
+        return microGridWon;
+    }
+
+    public void setMicroGridWon(boolean microGridWon) {
+        this.microGridWon = microGridWon;
+    }
+    
+    
 }
