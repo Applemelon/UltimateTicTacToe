@@ -298,7 +298,7 @@ public class GameManager
         //diagnoal 2
         for (int i = 0; i < 3; i++)
         {
-            line[i] = normalBoard[2 - i][2 - i];
+            line[i] = normalBoard[2 - i][i];
         }
         if (line[0].equals(line[1]) && line[1].equals(line[2]))
         {

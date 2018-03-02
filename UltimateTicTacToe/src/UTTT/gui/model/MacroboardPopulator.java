@@ -105,9 +105,18 @@ public class MacroboardPopulator {
         });
 
         StringProperty macroValue = bll.getMacroValue(xMakro, yMakro);
-
-        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-
+        
+        macroValue.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->{
+            if (value.get().equals(".")){
+                if (newValue.equals("-1")){
+                    button.setStyle("-fx-background-color: gray");
+                }
+                else if (newValue.equals(".")){
+                    button.setStyle("-fx-background-color: lightgrey");
+                }
+            }
+            
+            
         });
 
         button.setPrefSize(10000, 10000);
