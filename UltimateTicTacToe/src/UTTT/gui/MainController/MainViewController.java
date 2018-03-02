@@ -6,12 +6,21 @@
 package UTTT.gui.MainController;
 
 import UTTT.gui.model.MacroboardPopulator;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,14 +33,34 @@ public class MainViewController implements Initializable {
     private GridPane macroGridPane;
     @FXML
     private Label lblCurrentPlayer;
+    private MacroboardPopulator macroPop;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MacroboardPopulator macroPop = new MacroboardPopulator(macroGridPane);
+        macroPop = new MacroboardPopulator(macroGridPane);
         macroPop.getCurrentPlayerLabel(lblCurrentPlayer);
     }    
+    
+    @FXML
+    private void handleNewGame(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/MainView.fxml"));
+            Parent root = fxLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = macroPop.getMainStage();
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Could not restart", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
     
 }
