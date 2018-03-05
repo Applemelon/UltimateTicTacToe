@@ -5,7 +5,9 @@
  */
 package UTTT.bll;
 
+import UTTT.bll.bot.IBot;
 import UTTT.bll.game.GameManager;
+import UTTT.bll.game.GameManager.GameMode;
 import UTTT.bll.game.GameState;
 import UTTT.bll.move.IMove;
 import UTTT.bll.move.Move;
@@ -21,10 +23,24 @@ public class BLLManager
     GameManager gameManager;
     MyGameField myfield;
 
-    public BLLManager()
+    public BLLManager(GameMode gameMode, IBot bot1, IBot bot2)
     {
         this.myfield = new MyGameField();
-        this.gameManager = new GameManager(new GameState(myfield));
+        switch (gameMode)
+        {
+            case HumanVsHuman:
+                this.gameManager = new GameManager(new GameState(myfield));
+                break;
+            case HumanVsBot:
+                this.gameManager = new GameManager(new GameState(myfield), bot1);
+                break;
+            case BotVsBot:
+                this.gameManager = new GameManager(new GameState(myfield), bot1, bot2);
+                break;
+            default:
+                this.gameManager = new GameManager(new GameState(myfield));
+                break;
+        }
     }
 
     /**
@@ -62,42 +78,47 @@ public class BLLManager
 
         return value;
     }
-    
+
     /**
      * @return true if a microgrid has been won.
      */
-    public boolean isMicroGridWon() {
-        return(gameManager.isMicroGridWon());
+    public boolean isMicroGridWon()
+    {
+        return (gameManager.isMicroGridWon());
     }
-    
+
     /**
      * Resets the microgridWon value to false.
      */
-    public void setMicroGridWon() {
+    public void setMicroGridWon()
+    {
         gameManager.setMicroGridWon(false);
     }
-    
+
     /**
      * @return true if a microgrid has been won.
      */
-    public boolean isMicroGridDraw() {
-        return(gameManager.isMicroGridDraw());
+    public boolean isMicroGridDraw()
+    {
+        return (gameManager.isMicroGridDraw());
     }
-    
+
     /**
      * Resets the microgridWon value to false.
      */
-    public void setMicroGridDraw() {
+    public void setMicroGridDraw()
+    {
         gameManager.setMicroGridDraw(false);
     }
-    
+
     /**
      * get the value of the given coordinats
      * @param x 0 to 2
      * @param y 0 to 2
      * @return Stringproperty with the value
      */
-    public StringProperty getMacroValue(int x, int y){
+    public StringProperty getMacroValue(int x, int y)
+    {
         StringProperty[][] board = myfield.getPropertyMacroBoard();
 
         StringProperty value = board[x][y];

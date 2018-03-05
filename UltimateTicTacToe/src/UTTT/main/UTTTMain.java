@@ -18,13 +18,15 @@ import javafx.stage.Stage;
  *
  * @author janvanzetten
  */
-public class UTTTMain extends Application {
+public class UTTTMain extends Application
+{
 
     private Scene scene;
-    
+
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/MainView.fxml"));
+    public void start(Stage stage) throws IOException
+    {
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/NewGameView.fxml"));
         Parent root = fxLoader.load();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -38,8 +40,9 @@ public class UTTTMain extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
-    
+
 }
