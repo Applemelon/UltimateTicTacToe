@@ -5,6 +5,8 @@
  */
 package UTTT.gui.MainController;
 
+import UTTT.bll.bot.IBot;
+import UTTT.bll.game.GameManager.GameMode;
 import UTTT.gui.model.MacroboardPopulator;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -28,7 +29,8 @@ import javafx.stage.Stage;
  *
  * @author janvanzetten
  */
-public class MainViewController implements Initializable {
+public class MainViewController implements Initializable
+{
 
     @FXML
     private GridPane macroGridPane;
@@ -42,11 +44,16 @@ public class MainViewController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        macroPop = new MacroboardPopulator(macroGridPane);
+    public void initialize(URL url, ResourceBundle rb)
+    {
+    }
+
+    public void setup(GameMode gameMode, IBot bot1, IBot bot2)
+    {
+        macroPop = new MacroboardPopulator(macroGridPane, gameMode, bot1, bot2);
         macroPop.getCurrentPlayerLabel(lblCurrentPlayer, currentplayerPane);
-    }    
-    
+    }
+
     @FXML
     private void handleNewGame(ActionEvent event)
     {
@@ -65,5 +72,5 @@ public class MainViewController implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
 }
