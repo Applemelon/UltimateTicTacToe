@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -39,6 +40,10 @@ public class MainViewController implements Initializable
     private MacroboardPopulator macroPop;
     @FXML
     private Pane currentplayerPane;
+    
+
+    @FXML
+    private Button btnRestartNewPlayers;
 
     /**
      * Initializes the controller class.
@@ -55,18 +60,21 @@ public class MainViewController implements Initializable
     }
 
     @FXML
-    private void handleNewGame(ActionEvent event)
+    private void handleRestartNewPlayers(ActionEvent event) 
     {
-        try
+        try 
         {
-            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/MainView.fxml"));
+            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/NewGameView.fxml"));
             Parent root = fxLoader.load();
             Scene scene = new Scene(root);
             Stage stage = macroPop.getMainStage();
+            stage.setMinHeight(300);
+            stage.setMinWidth(500);
+            stage.centerOnScreen();
             stage.setScene(scene);
             stage.show();
-        }
-        catch (IOException ex)
+        } 
+        catch (IOException ex) 
         {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Could not restart", ButtonType.OK);
             alert.showAndWait();

@@ -41,6 +41,6 @@
             </Label>
          </children>
       </Pane>
-      <Button layoutX="521.0" layoutY="613.0" maxHeight="1.7976931348623157E308" minHeight="34.0" mnemonicParsing="false" onAction="#handleNewGame" stylesheets="@css/gridCSS.css" text="Restart game" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnRestartNewPlayers" layoutX="411.0" layoutY="605.0" minHeight="34.0" mnemonicParsing="false" onAction="#handleRestartNewPlayers" style="-fx-background-color: #77706A;" stylesheets="@css/gridCSS.css" text="Restart the game" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     </children>
 </AnchorPane>

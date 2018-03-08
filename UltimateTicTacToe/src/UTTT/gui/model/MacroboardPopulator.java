@@ -319,4 +319,8 @@ public class MacroboardPopulator
     {
         return ((Stage) macroGridPane.getScene().getWindow());
     }
+    
+    public BLLManager getBLLManager () {
+        return bll;
+    }
 }

@@ -125,5 +125,9 @@ public class BLLManager
 
         return value;
     }
+    
+    public String getGameMode() {
+        return gameManager.getGameMode();
+    }
 
 }

@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +31,8 @@ public class NewGameController implements Initializable
 {
     @FXML
     private Button btnPvP;
+    @FXML
+    private ImageView imageU;
 
     /**
      * Initializes the controller class.
@@ -36,11 +40,11 @@ public class NewGameController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        imageU.setImage((new Image("/UTTT/main/UltimateTicTatToeLogo.png")));
     }
 
     @FXML
-    private void handlePlayerVersusPlayer(ActionEvent event)
+    public void handlePlayerVersusPlayer()
     {
         try
         {
@@ -67,7 +71,7 @@ public class NewGameController implements Initializable
     }
 
     @FXML
-    private void handlePlayerVersusAI(ActionEvent event)
+    public void handlePlayerVersusAI()
     {
         try
         {
@@ -84,7 +88,7 @@ public class NewGameController implements Initializable
             stage.setMinHeight(660.0);
             stage.setMinWidth(600.0);
             stage.centerOnScreen();
-            stage.setTitle("The Ultimate Tic Tac Toe - PvP");
+            stage.setTitle("The Ultimate Tic Tac Toe - PvB");
         }
         catch (IOException ex)
         {
@@ -94,7 +98,7 @@ public class NewGameController implements Initializable
     }
 
     @FXML
-    private void handleAIVersusAI(ActionEvent event)
+    public void handleAIVersusAI()
     {
         try
         {
@@ -111,7 +115,7 @@ public class NewGameController implements Initializable
             stage.setMinHeight(660.0);
             stage.setMinWidth(600.0);
             stage.centerOnScreen();
-            stage.setTitle("The Ultimate Tic Tac Toe - PvP");
+            stage.setTitle("The Ultimate Tic Tac Toe - BvB");
         }
         catch (IOException ex)
         {

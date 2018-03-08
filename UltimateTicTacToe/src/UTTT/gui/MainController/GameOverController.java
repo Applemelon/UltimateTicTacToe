@@ -78,7 +78,7 @@ public class GameOverController implements Initializable
     {
         try
         {
-            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/MainView.fxml"));
+            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/UTTT/gui/view/NewGameView.fxml"));
             Parent root = fxLoader.load();
             Scene scene = new Scene(root);
             Stage stage = mainStage;

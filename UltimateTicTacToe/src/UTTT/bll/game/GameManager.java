@@ -36,6 +36,7 @@ public class GameManager {
     private IBot bot2 = null;
     private boolean microGridWon;
     private boolean microGridDraw;
+    private String currentGameMode;
     
     /**
      * Set's the currentState so the game can begin. Game expected to be played
@@ -47,6 +48,7 @@ public class GameManager {
     public GameManager(IGameState currentState) {
         this.currentState = currentState;
         mode = GameMode.HumanVsHuman;
+        currentGameMode = "PvP";
     }
 
     /**
@@ -61,6 +63,7 @@ public class GameManager {
         this.currentState = currentState;
         mode = GameMode.HumanVsBot;
         this.bot = bot;
+        currentGameMode = "PvAI";
     }
 
     /**
@@ -77,6 +80,7 @@ public class GameManager {
         mode = GameMode.BotVsBot;
         this.bot = bot;
         this.bot2 = bot2;
+        currentGameMode = "AIvAI";
     }
 
     /**
@@ -353,6 +357,9 @@ public class GameManager {
         this.microGridDraw = microGridDraw;
     }
     
+    public String getGameMode() {
+        return currentGameMode;
+    }
     
 
 }
