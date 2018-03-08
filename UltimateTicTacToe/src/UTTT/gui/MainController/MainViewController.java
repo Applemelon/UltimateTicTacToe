@@ -70,8 +70,8 @@ public class MainViewController implements Initializable
             Stage stage = macroPop.getMainStage();
             stage.setMinHeight(300);
             stage.setMinWidth(500);
-            stage.centerOnScreen();
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } 
         catch (IOException ex) 

@@ -84,7 +84,12 @@ public class GameOverController implements Initializable
             Stage stage = mainStage;
             stage.setScene(scene);
             Stage st = (Stage) lblMessage.getScene().getWindow();
+            stage.setMinHeight(300);
+            stage.setMinWidth(500);
+            stage.setMaxHeight(300);
+            stage.setMaxWidth(500);
             st.close();
+            stage.centerOnScreen();
             stage.show();
         }
         catch (IOException ex)
