@@ -68,8 +68,9 @@ public class MainViewController implements Initializable
             Parent root = fxLoader.load();
             Scene scene = new Scene(root);
             Stage stage = macroPop.getMainStage();
-            stage.setMinHeight(300);
-            stage.setMinWidth(500);
+            stage.setMinHeight(290);
+            stage.setMinWidth(490);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();

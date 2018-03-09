@@ -30,6 +30,9 @@ public class UTTTMain extends Application
         Parent root = fxLoader.load();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMaxHeight(290);
+        stage.setMaxWidth(480);
+        stage.setResizable(false);
         stage.setTitle("The Ultimate Tic Tac Toe");
         stage.getIcons().add(new Image("/UTTT/main/UltimateTicTatToeLogo.png"));
         stage.show();
